@@ -14,7 +14,7 @@ A modern React dashboard for monitoring and controlling ESP32-based smart home d
 
 ## 🛠️ Tech Stack
 
-- React 19
+- React 18
 - TypeScript
 - Vite
 - Material UI (MUI)
