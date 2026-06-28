@@ -2,6 +2,10 @@
 
 A modern React dashboard for monitoring and controlling ESP32-based smart home devices.
 
+## 📸 Dashboard
+
+![Smart Home Dashboard](docs/dashboard.png)
+
 ## 🚀 Features
 
 - 📊 Dashboard overview
