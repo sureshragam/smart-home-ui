@@ -6,25 +6,39 @@ A modern React dashboard for monitoring and controlling ESP32-based smart home d
 
 ![Smart Home Dashboard](docs/dashboard.png)
 
+---
+
 ## 🚀 Features
 
 - 📊 Dashboard overview
-- 📡 Device monitoring
-- 🚶 Motion detection history
-- ❤️ System health monitoring
+- 📡 Monitor connected smart home devices
+- 🚶 View recent motion detection activity
+- ❤️ Monitor system health metrics
 - 🔄 Spring Boot REST API integration
 - ⚡ Fast data fetching with TanStack Query
-- 🎨 Responsive Material UI interface
+- 🎨 Responsive and modern Material UI interface
+
+---
 
 ## 🛠️ Tech Stack
+
+### Frontend
 
 - React 19
 - TypeScript
 - Vite
 - Material UI (MUI)
+- Emotion
 - TanStack Query
 - Axios
-- React Router
+- React Router DOM
+- Recharts
+
+### Backend
+
+- Spring Boot REST API
+
+---
 
 ## 📂 Project Structure
 
@@ -43,6 +57,8 @@ src
 ├── types
 └── utils
 ```
+
+---
 
 ## ⚙️ Getting Started
 
@@ -66,7 +82,13 @@ npm install
 
 ### Configure Environment Variables
 
-Create a `.env` file in the project root.
+Copy `.env.example` to `.env`.
+
+```bash
+cp .env.example .env
+```
+
+Update the API URL if required.
 
 ```env
 VITE_API_BASE_URL=http://localhost:8080/api
@@ -78,41 +100,67 @@ VITE_API_BASE_URL=http://localhost:8080/api
 npm run dev
 ```
 
-Open your browser and navigate to:
+Open your browser:
 
 ```text
 http://localhost:5173
 ```
 
+---
+
+## 📜 Available Scripts
+
+```bash
+npm run dev      # Start development server
+npm run build    # Build for production
+npm run preview  # Preview production build
+npm run lint     # Run ESLint
+```
+
+---
+
 ## 🔗 Backend
 
 This application communicates with the **Smart Home API**, built using Spring Boot.
 
-Backend Repository:
+**Backend Repository**
 
 ```text
 smart-home-api
 ```
 
-Expected backend URL:
+**Expected Backend URL**
 
 ```text
 http://localhost:8080/api
 ```
 
-## 📋 Roadmap
+---
+
+## 🚀 Future Enhancements
 
 - [x] Dashboard UI
-- [x] Spring Boot API integration
+- [x] Spring Boot REST API integration
 - [x] Device monitoring
-- [x] Activity monitoring
+- [x] Motion activity monitoring
 - [x] System health monitoring
 - [ ] MySQL integration
 - [ ] ESP32 integration
-- [ ] Real-time updates (WebSocket)
-- [ ] Authentication
+- [ ] Real-time updates using WebSocket
 - [ ] Device control
-- [ ] Notifications
+- [ ] Authentication & Authorization
+- [ ] Push notifications
+- [ ] Mobile responsive improvements
+
+---
+
+## 👨‍💻 Author
+
+**Suresh Ragam**
+
+GitHub: https://github.com/sureshragam
+
+---
 
 ## 📄 License
 
