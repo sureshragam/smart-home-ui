@@ -16,7 +16,7 @@ A modern React dashboard for monitoring and controlling ESP32-based smart home d
 - ❤️ Monitor system health metrics
 - 🔄 Spring Boot REST API integration
 - ⚡ Fast data fetching with TanStack Query
-- 🎨 Responsive and modern Material UI interface
+- 🎨 Responsive and modern Material UI interfaces
 
 ---
 
