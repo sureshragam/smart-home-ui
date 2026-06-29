@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-
 export type SummaryCardIcon = "devices" | "motion" | "alerts" | "uptime";
 
 export interface SummaryCardModel {
