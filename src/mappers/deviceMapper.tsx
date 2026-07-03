@@ -7,5 +7,5 @@ export const mapDevicesToCards = (
 	devices.map((device) => ({
 		...device,
 		status: device.status === "ONLINE" ? "Online" : "Offline",
-		motion: device.motion === "ACTIVE" ? "Active" : "Idle",
+		motion: device.motionStatus === "ACTIVE" ? "Active" : "Idle",
 	}));

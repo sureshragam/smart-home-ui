@@ -10,6 +10,7 @@ import { useDashboardData } from "../../hooks/useDashboardData";
 import { useDevicesData } from "../../hooks/useDevicesData";
 import { useActivitiesData } from "../../hooks/useActivitiesData";
 import { useHealthData } from "../../hooks/useHealthData";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const DashboardPage = () => {
 	const {
@@ -45,7 +46,11 @@ const DashboardPage = () => {
 		isDashboardError || isDevicesError || isActivitiesError || isHealthError;
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return (
+			<div>
+				<CircularProgress size={40} aria-label="Loading…" />
+			</div>
+		);
 	}
 
 	if (

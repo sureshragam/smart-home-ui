@@ -1,9 +1,20 @@
 export interface DeviceCardModel {
 	id: number;
 	name: string;
+
+	deviceCode: string;
+
+	type: string;
+
 	status: "Online" | "Offline";
+
 	motion: "Active" | "Idle";
-	wifi: string;
+
+	wifiStrength: number;
+
+	firmwareVersion: string;
+
 	ipAddress: string;
+
 	lastSeen: string;
 }

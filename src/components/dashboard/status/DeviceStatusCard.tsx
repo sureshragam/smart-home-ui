@@ -6,10 +6,11 @@ import LanRoundedIcon from "@mui/icons-material/LanRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
 
 interface DeviceStatusCardProps {
+	id: number;
 	name: string;
 	status: "Online" | "Offline";
-	motion: string;
-	wifi: string;
+	motion: "Active" | "Idle";
+	wifiStrength: number;
 	ipAddress: string;
 	lastSeen: string;
 }
@@ -18,7 +19,7 @@ const DeviceStatusCard = ({
 	name,
 	status,
 	motion,
-	wifi,
+	wifiStrength,
 	ipAddress,
 	lastSeen,
 }: DeviceStatusCardProps) => {
@@ -32,7 +33,7 @@ const DeviceStatusCard = ({
 		},
 		{
 			label: "Wi-Fi",
-			value: wifi,
+			value: wifiStrength,
 			icon: <WifiRoundedIcon fontSize="small" />,
 		},
 		{
