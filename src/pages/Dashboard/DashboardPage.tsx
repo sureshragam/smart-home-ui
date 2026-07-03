@@ -60,7 +60,12 @@ const DashboardPage = () => {
 		!activityList ||
 		!healthMetrics
 	) {
-		return <div>Something went wrong.</div>;
+		return (
+			<div>
+				<DashboardHero isSystemHealthy={false} />
+				<p>Server is not responding please try again later.</p>
+			</div>
+		);
 	}
 
 	return (

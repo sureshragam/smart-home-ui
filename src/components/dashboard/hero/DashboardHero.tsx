@@ -3,7 +3,7 @@ import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 
 import { Box, Chip, Stack, Typography } from "@mui/material";
 
-const DashboardHero = () => {
+const DashboardHero = ({ isSystemHealthy = true }) => {
 	return (
 		<Box
 			sx={{
@@ -29,8 +29,8 @@ const DashboardHero = () => {
 
 			<Chip
 				icon={<FavoriteRoundedIcon />}
-				label="System Healthy"
-				color="success"
+				label={isSystemHealthy ? "System Healthy" : "System Unhealthy"}
+				color={isSystemHealthy ? "success" : "error"}
 			/>
 		</Box>
 	);
