@@ -52,7 +52,7 @@ const DeviceTable = ({ devices }: { devices: DeviceResponse[] }) => {
 
 						<TableBody>
 							{devices?.length > 0 ? (
-								devices.map((device) => (
+								devices.map((device: DeviceResponse) => (
 									<DeviceTableRow key={device.id} device={device} />
 								))
 							) : (
