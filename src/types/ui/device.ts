@@ -1,10 +1,12 @@
+import type { DeviceType } from "../api/device";
+
 export interface DeviceCardModel {
 	id: number;
 	name: string;
 
 	deviceCode: string;
 
-	type: string;
+	type: DeviceType;
 
 	status: "Online" | "Offline";
 

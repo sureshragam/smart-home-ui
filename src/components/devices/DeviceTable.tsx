@@ -10,13 +10,9 @@ import {
 	Typography,
 } from "@mui/material";
 
-import { useDevicesData } from "../../hooks/useDevicesData";
-
 import DeviceTableRow from "./DeviceTableRow";
 
-const DeviceTable = () => {
-	const { data: devices = [] } = useDevicesData();
-
+const DeviceTable = ({ devices }) => {
 	return (
 		<Card
 			elevation={0}
@@ -54,9 +50,15 @@ const DeviceTable = () => {
 						</TableHead>
 
 						<TableBody>
-							{devices.map((device) => (
-								<DeviceTableRow key={device.id} device={device} />
-							))}
+							{devices?.length > 0 ? (
+								devices.map((device) => (
+									<DeviceTableRow key={device.id} device={device} />
+								))
+							) : (
+								<TableRow>
+									<p style={{ textAlign: "center" }}>No records</p>
+								</TableRow>
+							)}
 						</TableBody>
 					</Table>
 				</TableContainer>

@@ -10,8 +10,19 @@ import {
 
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
+import type { DeviceType } from "../../types/api/device";
 
-const DeviceToolbar = () => {
+interface DeviceTypeOption {
+	id: string;
+	label: string;
+	value: DeviceType;
+}
+
+interface DeviceToolbarProps {
+	typeOptions: DeviceTypeOption[];
+}
+
+const DeviceToolbar = ({ typeOptions }: DeviceToolbarProps) => {
 	return (
 		<Card
 			elevation={0}
@@ -48,6 +59,11 @@ const DeviceToolbar = () => {
 						defaultValue="ALL"
 					>
 						<MenuItem value="ALL">All Types</MenuItem>
+						{typeOptions.map((eachType) => (
+							<MenuItem key={eachType.id} value={eachType.value}>
+								{eachType.label}
+							</MenuItem>
+						))}
 					</TextField>
 
 					<TextField
