@@ -11,8 +11,9 @@ import {
 } from "@mui/material";
 
 import DeviceTableRow from "./DeviceTableRow";
+import type { DeviceResponse } from "../../types/api/device";
 
-const DeviceTable = ({ devices }) => {
+const DeviceTable = ({ devices }: { devices: DeviceResponse[] }) => {
 	return (
 		<Card
 			elevation={0}
