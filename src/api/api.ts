@@ -11,9 +11,12 @@ const api = axios.create({
 api.interceptors.request.use(
 	(config) => {
 		const token = localStorage.getItem("accessToken");
+
 		if (token) {
 			config.headers.Authorization = `Bearer ${token}`;
 		}
+
+		return config;
 	},
 	(error) => Promise.reject(error),
 );
@@ -23,7 +26,7 @@ api.interceptors.response.use(
 		if (error.response?.status === 401) {
 			localStorage.removeItem("accessToken");
 
-			window.location.href = "/#/login";
+			globalThis.location.href = "/#/login";
 		}
 
 		return Promise.reject(error);

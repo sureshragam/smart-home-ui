@@ -1,10 +1,10 @@
-import { createHashRouter } from "react-router-dom";
+import { createHashRouter, Navigate } from "react-router-dom";
 
 import AuthLayout from "../layouts/AuthLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 
-import LoginPage from "../pages/auth/Login";
-import RegisterPage from "../pages/auth/Register";
+import LoginPage from "../pages/Auth/Login";
+import RegisterPage from "../pages/Auth/Register";
 
 import DashboardPage from "../pages/Dashboard";
 import DevicesPage from "../pages/Devices";
@@ -13,7 +13,6 @@ import AutomationsPage from "../pages/Automations";
 import SettingsPage from "../pages/Settings";
 import ProtectedRoute from "../routes/ProtectedRoute";
 import PublicRoute from "../routes/PublicRoute";
-import { Navigate } from "react-router-dom";
 
 const router = createHashRouter([
 	// Public Routes
