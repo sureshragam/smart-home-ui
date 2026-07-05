@@ -4,4 +4,7 @@ export interface DashboardResponse {
 	activeMotionDevices: number;
 	alerts: number;
 	uptime: string;
+	temperature: number;
+	humidity: number;
+	pressure: number;
 }

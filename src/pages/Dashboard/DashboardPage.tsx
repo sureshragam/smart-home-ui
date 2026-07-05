@@ -11,6 +11,7 @@ import { useDevicesData } from "../../hooks/useDevicesData";
 import { useActivitiesData } from "../../hooks/useActivitiesData";
 import { useHealthData } from "../../hooks/useHealthData";
 import CircularProgress from "@mui/material/CircularProgress";
+import EnvironmentCard from "../../components/dashboard/environment";
 
 const DashboardPage = () => {
 	const {
@@ -81,6 +82,14 @@ const DashboardPage = () => {
 
 				<Grid size={{ xs: 12, lg: 4 }}>
 					<RecentActivity activities={activityList} />
+				</Grid>
+
+				<Grid size={12}>
+					<EnvironmentCard
+						temperature={dashboardData.temperature}
+						humidity={dashboardData.humidity}
+						pressure={dashboardData.pressure}
+					/>
 				</Grid>
 
 				<Grid size={12}>
