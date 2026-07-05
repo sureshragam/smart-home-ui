@@ -10,7 +10,7 @@ interface RecentActivityProps {
 }
 
 const RecentActivity = ({ activities }: RecentActivityProps) => {
-	const activityItems = mapActivitiesToItems(activities).slice(0, 10);
+	const activityItems = mapActivitiesToItems(activities).slice(0, 3);
 
 	return (
 		<Card
