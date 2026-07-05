@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 import AppNavbar from "../components/layout/AppNavbar";
 
-const AppLayout = () => {
+const DashboardLayout = () => {
 	return (
 		<Box
 			sx={{
@@ -26,4 +26,4 @@ const AppLayout = () => {
 	);
 };
 
-export default AppLayout;
+export default DashboardLayout;

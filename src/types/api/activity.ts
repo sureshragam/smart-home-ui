@@ -4,7 +4,12 @@ export interface ActivityResponse {
 		| "MOTION_DETECTED"
 		| "MOTION_STOPPED"
 		| "DEVICE_CONNECTED"
-		| "SYSTEM_STARTED";
+		| "DEVICE_DISCONNECTED"
+		| "SYSTEM_STARTED"
+		| "SYSTEM_STOPPED"
+		| "DEVICE_ONLINE"
+		| "DEVICE_OFFLINE";
+
 	title: string;
 	device: string;
 	timestamp: string;
