@@ -11,11 +11,10 @@ import Typography from "@mui/material/Typography";
 import { logout } from "../../api/authApi";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 
 const AppNavbar = () => {
-	const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-		null,
-	);
+	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorElUser(event.currentTarget);
 	};

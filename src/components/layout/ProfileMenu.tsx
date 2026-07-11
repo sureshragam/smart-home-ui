@@ -1,14 +1,8 @@
 import { Avatar } from "@mui/material";
-import { useState } from "react";
 
 const ProfileMenu = () => {
-	const [showProfile, setShowProfile] = useState(false);
-	const handleProfile = () => {
-		setShowProfile((prev) => !prev);
-	};
 	return (
 		<Avatar
-			onClick={handleProfile}
 			sx={{
 				width: 40,
 				height: 40,
