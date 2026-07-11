@@ -3,7 +3,6 @@ import { Grid } from "@mui/material";
 import MemoryIcon from "@mui/icons-material/Memory";
 import WifiIcon from "@mui/icons-material/Wifi";
 import WifiOffIcon from "@mui/icons-material/WifiOff";
-import SensorsIcon from "@mui/icons-material/Sensors";
 
 import DeviceSummaryCard from "./DeviceSummaryCard";
 
@@ -19,11 +18,6 @@ const DeviceSummary = () => {
 	).length;
 
 	const offlineDevices = totalDevices - onlineDevices;
-
-	const activeMotionDevices = devices.filter(
-		(device) => device.motionStatus === "ACTIVE",
-	).length;
-
 	return (
 		<Grid container spacing={3} mb={4}>
 			<Grid size={{ xs: 12, sm: 6, md: 3 }}>
@@ -50,15 +44,6 @@ const DeviceSummary = () => {
 					value={offlineDevices}
 					icon={<WifiOffIcon />}
 					color="#d32f2f"
-				/>
-			</Grid>
-
-			<Grid size={{ xs: 12, sm: 6, md: 3 }}>
-				<DeviceSummaryCard
-					title="Motion Active"
-					value={activeMotionDevices}
-					icon={<SensorsIcon />}
-					color="#ed6c02"
 				/>
 			</Grid>
 		</Grid>
