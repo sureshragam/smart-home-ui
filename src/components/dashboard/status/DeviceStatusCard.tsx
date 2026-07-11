@@ -1,6 +1,4 @@
 import { Chip, Divider, Paper, Stack, Typography } from "@mui/material";
-
-import DirectionsWalkRoundedIcon from "@mui/icons-material/DirectionsWalkRounded";
 import WifiRoundedIcon from "@mui/icons-material/WifiRounded";
 import LanRoundedIcon from "@mui/icons-material/LanRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
@@ -9,7 +7,6 @@ interface DeviceStatusCardProps {
 	id: number;
 	name: string;
 	status: "Online" | "Offline";
-	motion: "Active" | "Idle";
 	wifiStrength: number;
 	ipAddress: string;
 	lastSeen: string;
@@ -18,7 +15,6 @@ interface DeviceStatusCardProps {
 const DeviceStatusCard = ({
 	name,
 	status,
-	motion,
 	wifiStrength,
 	ipAddress,
 	lastSeen,
@@ -26,11 +22,6 @@ const DeviceStatusCard = ({
 	const isOnline = status === "Online";
 
 	const details = [
-		{
-			label: "Motion",
-			value: motion,
-			icon: <DirectionsWalkRoundedIcon fontSize="small" />,
-		},
 		{
 			label: "Wi-Fi",
 			value: wifiStrength,
