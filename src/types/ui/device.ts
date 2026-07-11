@@ -10,8 +10,6 @@ export interface DeviceCardModel {
 
 	status: "Online" | "Offline";
 
-	motion: "Active" | "Idle";
-
 	wifiStrength: number;
 
 	firmwareVersion: string;

@@ -12,7 +12,6 @@ export interface DeviceResponse {
 	deviceCode: string;
 	type: DeviceType;
 	status: "ONLINE" | "OFFLINE";
-	motionStatus: "ACTIVE" | "IDLE";
 	wifiStrength: number;
 	firmwareVersion: string;
 	ipAddress: string;
