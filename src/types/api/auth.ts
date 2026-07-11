@@ -8,3 +8,7 @@ export interface LoginResponse {
 	tokenType: string;
 	expiresIn: number;
 }
+export interface AuthMeResponse {
+	username: string;
+	role: string;
+}

@@ -13,6 +13,7 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 
@@ -27,16 +28,18 @@ const LoginForm = () => {
 	const [loading, setLoading] = useState(false);
 
 	const navigate = useNavigate();
+	const queryClient = useQueryClient();
 	const handleLogin = async () => {
 		try {
 			setLoading(true);
 
-			const response = await login({
+			await login({
 				email,
 				password,
 			});
-
-			localStorage.setItem("accessToken", response.accessToken);
+			await queryClient.invalidateQueries({
+				queryKey: ["auth-me"],
+			});
 
 			navigate("/");
 		} catch (error) {
