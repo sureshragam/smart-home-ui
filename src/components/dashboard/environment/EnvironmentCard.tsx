@@ -1,6 +1,7 @@
 import ThermostatRoundedIcon from "@mui/icons-material/ThermostatRounded";
 import WaterDropRoundedIcon from "@mui/icons-material/WaterDropRounded";
 import AirRoundedIcon from "@mui/icons-material/AirRounded";
+import DoorFrontRoundedIcon from "@mui/icons-material/DoorFrontRounded";
 
 import {
 	Card,
@@ -15,9 +16,15 @@ interface Props {
 	temperature: number;
 	humidity: number;
 	pressure: number;
+	doorStatus: boolean;
 }
 
-const EnvironmentCard = ({ temperature, humidity, pressure }: Props) => {
+const EnvironmentCard = ({
+	temperature,
+	humidity,
+	pressure,
+	doorStatus,
+}: Props) => {
 	return (
 		<Card>
 			<CardContent>
@@ -28,7 +35,7 @@ const EnvironmentCard = ({ temperature, humidity, pressure }: Props) => {
 				<Divider sx={{ mb: 3 }} />
 
 				<Grid container spacing={3}>
-					<Grid size={4}>
+					<Grid size={3}>
 						<Stack alignItems="center" spacing={1}>
 							<ThermostatRoundedIcon color="error" />
 
@@ -38,7 +45,7 @@ const EnvironmentCard = ({ temperature, humidity, pressure }: Props) => {
 						</Stack>
 					</Grid>
 
-					<Grid size={4}>
+					<Grid size={3}>
 						<Stack alignItems="center" spacing={1}>
 							<WaterDropRoundedIcon color="primary" />
 
@@ -48,13 +55,30 @@ const EnvironmentCard = ({ temperature, humidity, pressure }: Props) => {
 						</Stack>
 					</Grid>
 
-					<Grid size={4}>
+					<Grid size={3}>
 						<Stack alignItems="center" spacing={1}>
 							<AirRoundedIcon color="success" />
 
 							<Typography variant="body2">Pressure</Typography>
 
 							<Typography variant="h5">{pressure.toFixed(1)} hPa</Typography>
+						</Stack>
+					</Grid>
+
+					<Grid size={3}>
+						<Stack alignItems="center" spacing={1}>
+							<DoorFrontRoundedIcon
+								color={doorStatus ? "warning" : "success"}
+							/>
+
+							<Typography variant="body2">Door</Typography>
+
+							<Typography
+								variant="h5"
+								color={doorStatus ? "warning.main" : "success.main"}
+							>
+								{doorStatus ? "Open" : "Closed"}
+							</Typography>
 						</Stack>
 					</Grid>
 				</Grid>

@@ -10,6 +10,7 @@ import { useDashboardData } from "../../hooks/useDashboardData";
 import { useDevicesData } from "../../hooks/useDevicesData";
 import { useActivitiesData } from "../../hooks/useActivitiesData";
 import { useHealthData } from "../../hooks/useHealthData";
+import { useEnvironmentData } from "../../hooks/useEnvironmentData";
 import CircularProgress from "@mui/material/CircularProgress";
 import EnvironmentCard from "../../components/dashboard/environment";
 
@@ -38,13 +39,24 @@ const DashboardPage = () => {
 		isError: isHealthError,
 	} = useHealthData();
 
+	const {
+		data: environmentData,
+		isLoading: isEnvironmentLoading,
+		isError: isEnvironmentError,
+	} = useEnvironmentData();
+
 	const isLoading =
 		isDashboardLoading ||
 		isDevicesLoading ||
 		isActivitiesLoading ||
-		isHealthLoading;
+		isHealthLoading ||
+		isEnvironmentLoading;
 	const isError =
-		isDashboardError || isDevicesError || isActivitiesError || isHealthError;
+		isDashboardError ||
+		isDevicesError ||
+		isActivitiesError ||
+		isHealthError ||
+		isEnvironmentError;
 
 	if (isLoading) {
 		return (
@@ -59,7 +71,8 @@ const DashboardPage = () => {
 		!dashboardData ||
 		!deviceList ||
 		!activityList ||
-		!healthMetrics
+		!healthMetrics ||
+		!environmentData
 	) {
 		return (
 			<div>
@@ -86,9 +99,10 @@ const DashboardPage = () => {
 
 				<Grid size={12}>
 					<EnvironmentCard
-						temperature={dashboardData.temperature}
-						humidity={dashboardData.humidity}
-						pressure={dashboardData.pressure}
+						temperature={environmentData.temperature}
+						humidity={environmentData.humidity}
+						pressure={environmentData.pressure}
+						doorStatus={environmentData.doorStatus}
 					/>
 				</Grid>
 
