@@ -20,7 +20,7 @@ const DeviceSummary = () => {
 	const offlineDevices = totalDevices - onlineDevices;
 	return (
 		<Grid container spacing={3} mb={4}>
-			<Grid size={{ xs: 12, sm: 6, md: 3 }}>
+			<Grid size={{ xs: 12, sm: 6, md: 4 }}>
 				<DeviceSummaryCard
 					title="Total Devices"
 					value={totalDevices}
@@ -29,7 +29,7 @@ const DeviceSummary = () => {
 				/>
 			</Grid>
 
-			<Grid size={{ xs: 12, sm: 6, md: 3 }}>
+			<Grid size={{ xs: 12, sm: 6, md: 4 }}>
 				<DeviceSummaryCard
 					title="Online"
 					value={onlineDevices}
@@ -38,7 +38,7 @@ const DeviceSummary = () => {
 				/>
 			</Grid>
 
-			<Grid size={{ xs: 12, sm: 6, md: 3 }}>
+			<Grid size={{ xs: 12, sm: 6, md: 4 }}>
 				<DeviceSummaryCard
 					title="Offline"
 					value={offlineDevices}
