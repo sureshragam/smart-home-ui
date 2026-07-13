@@ -2,7 +2,7 @@ import { AppBar, Box, Container, IconButton, Toolbar } from "@mui/material";
 
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
-import NotificationBell from "./NotificationBell";
+import NotificationBell from "../notification/NotificationBell";
 import ProfileMenu from "./ProfileMenu";
 import ThemeToggle from "./ThemeToggle";
 import Menu from "@mui/material/Menu";
