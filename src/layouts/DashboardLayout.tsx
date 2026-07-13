@@ -1,7 +1,7 @@
 import { Box, Container } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
-import AppNavbar from "../components/notification/NotificationBell";
+import AppNavbar from "../components/layout/AppNavbar";
 
 const DashboardLayout = () => {
 	return (
