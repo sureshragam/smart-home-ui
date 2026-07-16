@@ -103,6 +103,7 @@ const DashboardPage = () => {
 						humidity={environmentData.humidity}
 						pressure={environmentData.pressure}
 						doorStatus={environmentData.doorStatus}
+						airQuality={environmentData.airQuality}
 					/>
 				</Grid>
 
