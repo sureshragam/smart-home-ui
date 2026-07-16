@@ -1,5 +1,6 @@
 import ThermostatRoundedIcon from "@mui/icons-material/ThermostatRounded";
 import WaterDropRoundedIcon from "@mui/icons-material/WaterDropRounded";
+import CompressRoundedIcon from "@mui/icons-material/CompressRounded";
 import AirRoundedIcon from "@mui/icons-material/AirRounded";
 import DoorFrontRoundedIcon from "@mui/icons-material/DoorFrontRounded";
 
@@ -16,6 +17,7 @@ interface Props {
 	temperature: number;
 	humidity: number;
 	pressure: number;
+	airQuality: number;
 	doorStatus: boolean;
 }
 
@@ -23,6 +25,7 @@ const EnvironmentCard = ({
 	temperature,
 	humidity,
 	pressure,
+	airQuality,
 	doorStatus,
 }: Props) => {
 	return (
@@ -35,7 +38,7 @@ const EnvironmentCard = ({
 				<Divider sx={{ mb: 3 }} />
 
 				<Grid container spacing={3}>
-					<Grid size={3}>
+					<Grid size={2.4}>
 						<Stack alignItems="center" spacing={1}>
 							<ThermostatRoundedIcon color="error" />
 
@@ -45,7 +48,7 @@ const EnvironmentCard = ({
 						</Stack>
 					</Grid>
 
-					<Grid size={3}>
+					<Grid size={2.4}>
 						<Stack alignItems="center" spacing={1}>
 							<WaterDropRoundedIcon color="primary" />
 
@@ -55,9 +58,9 @@ const EnvironmentCard = ({
 						</Stack>
 					</Grid>
 
-					<Grid size={3}>
+					<Grid size={2.4}>
 						<Stack alignItems="center" spacing={1}>
-							<AirRoundedIcon color="success" />
+							<CompressRoundedIcon color="success" />
 
 							<Typography variant="body2">Pressure</Typography>
 
@@ -65,7 +68,17 @@ const EnvironmentCard = ({
 						</Stack>
 					</Grid>
 
-					<Grid size={3}>
+					<Grid size={2.4}>
+						<Stack alignItems="center" spacing={1}>
+							<AirRoundedIcon color="info" />
+
+							<Typography variant="body2">Air Quality</Typography>
+
+							<Typography variant="h5">{Math.round(airQuality)} PPM</Typography>
+						</Stack>
+					</Grid>
+
+					<Grid size={2.4}>
 						<Stack alignItems="center" spacing={1}>
 							<DoorFrontRoundedIcon
 								color={doorStatus ? "warning" : "success"}

@@ -3,5 +3,6 @@ export interface EnvironmentResponse {
 	humidity: number;
 	pressure: number;
 	doorStatus: boolean;
+	airQuality: number;
 	lastUpdated: string;
 }

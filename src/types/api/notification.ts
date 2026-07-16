@@ -15,7 +15,8 @@ export type NotificationType =
 	| "WATER_LEAK"
 	| "GAS"
 	| "SMOKE"
-	| "SYSTEM";
+	| "SYSTEM"
+	| "Air_QUALITY";
 
 export interface NotificationResponse {
 	id: number;
