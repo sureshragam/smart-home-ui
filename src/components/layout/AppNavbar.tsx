@@ -1,32 +1,48 @@
-import { AppBar, Box, Container, IconButton, Toolbar } from "@mui/material";
+import { useState } from "react";
+
+import {
+	AppBar,
+	Box,
+	Container,
+	IconButton,
+	Menu,
+	MenuItem,
+	Toolbar,
+	Typography,
+} from "@mui/material";
+
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+
+import { logout } from "../../api/authApi";
 
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
-import NotificationBell from "../notification/NotificationBell";
-import ProfileMenu from "./ProfileMenu";
+import MobileDrawer from "./MobileDrawer";
 import ThemeToggle from "./ThemeToggle";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-import { logout } from "../../api/authApi";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
-import { useState } from "react";
+import ProfileMenu from "./ProfileMenu";
+
+import NotificationBell from "../notification/NotificationBell";
+
+const settings = [
+	{ label: "Profile", action: "profile" },
+	{ label: "Logout", action: "logout" },
+];
 
 const AppNavbar = () => {
 	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+	const navigate = useNavigate();
+
+	const queryClient = useQueryClient();
+
 	const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorElUser(event.currentTarget);
 	};
+
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null);
 	};
-	const navigate = useNavigate();
-	const queryClient = useQueryClient();
-	const settings = [
-		{ label: "Profile", action: "profile" },
-		{ label: "Logout", action: "logout" },
-	];
 
 	const handleMenuClick = async (action: string) => {
 		handleCloseUserMenu();
@@ -41,7 +57,9 @@ const AppNavbar = () => {
 					await logout();
 				} finally {
 					queryClient.clear();
-					navigate("/login", { replace: true });
+					navigate("/login", {
+						replace: true,
+					});
 				}
 				break;
 
@@ -49,6 +67,7 @@ const AppNavbar = () => {
 				break;
 		}
 	};
+
 	return (
 		<AppBar
 			position="sticky"
@@ -56,7 +75,7 @@ const AppNavbar = () => {
 			color="transparent"
 			sx={{
 				backdropFilter: "blur(16px)",
-				backgroundColor: "rgba(18,18,18,0.8)",
+				backgroundColor: "rgba(18,18,18,0.80)",
 				borderBottom: "1px solid",
 				borderColor: "divider",
 			}}
@@ -68,47 +87,82 @@ const AppNavbar = () => {
 						minHeight: 72,
 					}}
 				>
+					{/* Mobile Drawer Button */}
+
+					<MobileDrawer />
+
+					{/* Logo */}
+
 					<Logo />
 
-					<Box sx={{ ml: 6 }}>
+					{/* Desktop Navigation */}
+
+					<Box
+						sx={{
+							ml: 6,
+							display: {
+								xs: "none",
+								md: "block",
+							},
+						}}
+					>
 						<NavLinks />
 					</Box>
 
 					<Box sx={{ flexGrow: 1 }} />
 
+					{/* Notification */}
+
 					<NotificationBell />
 
-					<ThemeToggle />
+					{/* Hide Theme Toggle on Mobile */}
+
+					<Box
+						sx={{
+							display: {
+								xs: "none",
+								sm: "block",
+							},
+						}}
+					>
+						<ThemeToggle />
+					</Box>
+
+					{/* Profile */}
 
 					<Box sx={{ ml: 1 }}>
-						<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+						<IconButton
+							onClick={handleOpenUserMenu}
+							sx={{
+								p: 0,
+							}}
+						>
 							<ProfileMenu />
 						</IconButton>
 					</Box>
+
 					<Menu
-						sx={{ mt: "45px" }}
-						id="menu-appbar"
 						anchorEl={anchorElUser}
+						open={Boolean(anchorElUser)}
+						onClose={handleCloseUserMenu}
 						anchorOrigin={{
-							vertical: "top",
+							vertical: "bottom",
 							horizontal: "right",
 						}}
-						keepMounted
 						transformOrigin={{
 							vertical: "top",
 							horizontal: "right",
 						}}
-						open={Boolean(anchorElUser)}
-						onClose={handleCloseUserMenu}
+						sx={{
+							mt: 1,
+						}}
 					>
 						{settings.map((setting) => (
 							<MenuItem
 								key={setting.action}
 								onClick={() => handleMenuClick(setting.action)}
 							>
-								<Typography sx={{ textAlign: "center" }}>
-									{setting.label}
-								</Typography>
+								<Typography>{setting.label}</Typography>
 							</MenuItem>
 						))}
 					</Menu>

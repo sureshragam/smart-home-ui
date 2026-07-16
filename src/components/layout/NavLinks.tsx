@@ -1,44 +1,43 @@
 import { Button, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-const links = [
-	{ label: "Dashboard", path: "/" },
-	{ label: "Devices", path: "/devices" },
-	{ label: "Automations", path: "/automations" },
-	{ label: "Analytics", path: "/analytics" },
-	{ label: "Settings", path: "/settings" },
-];
+import { navLinks } from "../../constants/navigation";
 
 const NavLinks = () => {
 	return (
 		<Stack direction="row" spacing={1}>
-			{links.map((link) => (
-				<Button
-					key={link.path}
-					component={NavLink}
-					to={link.path}
-					color="inherit"
-					sx={{
-						borderRadius: 2,
-						textTransform: "none",
-						fontWeight: 600,
-						px: 2,
-						py: 1,
-						transition: "0.2s",
+			{navLinks.map((link) => {
+				const Icon = link.icon;
 
-						"&.active": {
-							backgroundColor: "primary.main",
-							color: "#fff",
-						},
+				return (
+					<Button
+						key={link.path}
+						component={NavLink}
+						to={link.path}
+						color="inherit"
+						startIcon={<Icon />}
+						sx={{
+							borderRadius: 2,
+							textTransform: "none",
+							fontWeight: 600,
+							px: 2,
+							py: 1,
+							transition: "0.2s",
 
-						"&:hover": {
-							backgroundColor: "action.hover",
-						},
-					}}
-				>
-					{link.label}
-				</Button>
-			))}
+							"&.active": {
+								backgroundColor: "primary.main",
+								color: "#fff",
+							},
+
+							"&:hover": {
+								backgroundColor: "action.hover",
+							},
+						}}
+					>
+						{link.label}
+					</Button>
+				);
+			})}
 		</Stack>
 	);
 };
