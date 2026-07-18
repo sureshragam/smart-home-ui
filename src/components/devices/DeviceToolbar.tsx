@@ -11,18 +11,25 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
 import type { DeviceType } from "../../types/api/device";
+import type { Dispatch, SetStateAction } from "react";
 
 interface DeviceTypeOption {
 	id: string;
 	label: string;
-	value: DeviceType;
+	value: DeviceType | "ALL";
 }
 
 interface DeviceToolbarProps {
 	typeOptions: DeviceTypeOption[];
+	deviceType: DeviceType | "ALL";
+	setDeviceType: Dispatch<SetStateAction<DeviceType | "ALL">>;
 }
 
-const DeviceToolbar = ({ typeOptions }: DeviceToolbarProps) => {
+const DeviceToolbar = ({
+	typeOptions,
+	deviceType,
+	setDeviceType,
+}: DeviceToolbarProps) => {
 	return (
 		<Card
 			elevation={0}
@@ -57,8 +64,9 @@ const DeviceToolbar = ({ typeOptions }: DeviceToolbarProps) => {
 						size="small"
 						sx={{ minWidth: 170 }}
 						defaultValue="ALL"
+						value={deviceType}
+						onClick={(e) => setDeviceType(e.target.value)}
 					>
-						<MenuItem value="ALL">All Types</MenuItem>
 						{typeOptions.map((eachType) => (
 							<MenuItem key={eachType.id} value={eachType.value}>
 								{eachType.label}

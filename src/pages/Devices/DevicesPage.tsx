@@ -8,32 +8,29 @@ import DeviceToolbar from "../../components/devices/DeviceToolbar";
 import { useDevicesData } from "../../hooks/useDevicesData";
 
 import type { DeviceType } from "../../types/api/device";
+import { useState } from "react";
 
 const DevicesPage = () => {
-	const { data: devices = [] } = useDevicesData();
-
 	interface DeviceTypeOption {
 		id: string;
 		label: string;
-		value: DeviceType;
+		value: DeviceType | "ALL";
 	}
 
 	const typeOptions: DeviceTypeOption[] = [
-		{ id: crypto.randomUUID(), label: "ESP32", value: "ESP32" },
-		{ id: crypto.randomUUID(), label: "ESP32 Camera", value: "ESP32_CAM" },
-		{ id: crypto.randomUUID(), label: "PIR Sensor", value: "PIR_SENSOR" },
-		{
-			id: crypto.randomUUID(),
-			label: "Temperature Sensor",
-			value: "TEMPERATURE_SENSOR",
-		},
-		{
-			id: crypto.randomUUID(),
-			label: "Humidity Sensor",
-			value: "HUMIDITY_SENSOR",
-		},
-		{ id: crypto.randomUUID(), label: "Smart Switch", value: "SMART_SWITCH" },
+		{ id: "all", label: "All Types", value: "ALL" },
+		{ id: "esp32", label: "ESP32", value: "ESP32" },
+		{ id: "esp32_cam", label: "ESP32 Camera", value: "ESP32_CAM" },
 	];
+	const { data: devices = [] } = useDevicesData();
+	const [deviceType, setDeviceType] = useState(typeOptions[0].value);
+
+	const filteredData = devices.filter((device) => {
+		if (deviceType == typeOptions[0].value) return true;
+		if (deviceType == device.type) return true;
+		return false;
+	});
+
 	return (
 		<Box>
 			<PageHeader
@@ -41,12 +38,16 @@ const DevicesPage = () => {
 				subtitle="Manage and monitor all connected smart home devices."
 			/>
 
-			<DeviceToolbar typeOptions={typeOptions} />
+			<DeviceToolbar
+				typeOptions={typeOptions}
+				deviceType={deviceType}
+				setDeviceType={setDeviceType}
+			/>
 
 			<DeviceSummary />
 
 			<Box mt={4}>
-				<DeviceTable devices={devices} />
+				<DeviceTable devices={filteredData} />
 			</Box>
 		</Box>
 	);
