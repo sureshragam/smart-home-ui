@@ -39,9 +39,12 @@ const DevicesPage = () => {
 	const [deviceStatus, setDeviceStatus] = useState(stateOptions[0].value);
 
 	const filteredData = devices.filter((device) => {
-		if (deviceType == typeOptions[0].value) return true;
-		if (deviceType == device.type) return true;
-		return false;
+		const matchesType = deviceType === "ALL" || device.type === deviceType;
+
+		const matchesStatus =
+			deviceStatus === "ALL" || device.status === deviceStatus;
+
+		return matchesType && matchesStatus;
 	});
 
 	return (
