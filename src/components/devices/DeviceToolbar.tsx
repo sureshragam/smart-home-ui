@@ -18,17 +18,29 @@ interface DeviceTypeOption {
 	label: string;
 	value: DeviceType | "ALL";
 }
+type DeviceStatus = "ONLINE" | "OFFLINE";
+interface DeviceStateOption {
+	id: string;
+	label: string;
+	value: DeviceStatus | "ALL";
+}
 
 interface DeviceToolbarProps {
 	typeOptions: DeviceTypeOption[];
 	deviceType: DeviceType | "ALL";
 	setDeviceType: Dispatch<SetStateAction<DeviceType | "ALL">>;
+	stateOptions: DeviceStateOption[];
+	deviceStatus: DeviceStatus | "ALL";
+	setDeviceStatus: Dispatch<SetStateAction<DeviceStatus | "ALL">>;
 }
 
 const DeviceToolbar = ({
 	typeOptions,
 	deviceType,
 	setDeviceType,
+	stateOptions,
+	deviceStatus,
+	setDeviceStatus,
 }: DeviceToolbarProps) => {
 	return (
 		<Card
@@ -63,9 +75,10 @@ const DeviceToolbar = ({
 						label="Type"
 						size="small"
 						sx={{ minWidth: 170 }}
-						defaultValue="ALL"
 						value={deviceType}
-						onClick={(e) => setDeviceType(e.target.value)}
+						onChange={(e) =>
+							setDeviceType(e.target.value as DeviceType | "ALL")
+						}
 					>
 						{typeOptions.map((eachType) => (
 							<MenuItem key={eachType.id} value={eachType.value}>
@@ -79,11 +92,16 @@ const DeviceToolbar = ({
 						label="Status"
 						size="small"
 						sx={{ minWidth: 170 }}
-						defaultValue="ALL"
+						value={deviceStatus}
+						onChange={(e) =>
+							setDeviceStatus(e.target.value as DeviceStatus | "ALL")
+						}
 					>
-						<MenuItem value="ALL">All Status</MenuItem>
-						<MenuItem value="ONLINE">Online</MenuItem>
-						<MenuItem value="OFFLINE">Offline</MenuItem>
+						{stateOptions.map((eachType) => (
+							<MenuItem key={eachType.id} value={eachType.value}>
+								{eachType.label}
+							</MenuItem>
+						))}
 					</TextField>
 
 					<Button variant="contained" startIcon={<AddIcon />}>
@@ -91,7 +109,6 @@ const DeviceToolbar = ({
 					</Button>
 				</Stack>
 			</CardContent>
-			x
 		</Card>
 	);
 };
