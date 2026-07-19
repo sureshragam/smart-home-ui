@@ -5,7 +5,6 @@ import {
 	Checkbox,
 	FormControlLabel,
 	InputAdornment,
-	Link,
 	Stack,
 	TextField,
 } from "@mui/material";
@@ -15,7 +14,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { login } from "../../api/authApi";
 
@@ -99,15 +98,6 @@ const LoginForm = () => {
 				>
 					{loading ? "Signing In..." : "Sign In"}
 				</Button>
-
-				<Link
-					component={RouterLink}
-					to="/register"
-					underline="hover"
-					textAlign="center"
-				>
-					Don't have an account? Create one
-				</Link>
 			</Stack>
 		</form>
 	);
