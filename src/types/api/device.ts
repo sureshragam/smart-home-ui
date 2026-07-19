@@ -1,19 +1,37 @@
 export type DeviceType =
 	| "ESP32"
 	| "ESP32_CAM"
-	| "PIR_SENSOR"
-	| "TEMPERATURE_SENSOR"
-	| "HUMIDITY_SENSOR"
+	| "ARDUINO_UNO"
+	| "ARDUINO_NANO"
+	| "RASPBERRY_PI"
 	| "SMART_SWITCH";
+
+export type DeviceStatus = "ONLINE" | "OFFLINE";
+
+export type DeviceLocation =
+	| "LIVING_ROOM"
+	| "BEDROOM"
+	| "KITCHEN"
+	| "BATHROOM"
+	| "BALCONY"
+	| "AQUARIUM"
+	| "OFFICE";
 
 export interface DeviceResponse {
 	id: number;
 	name: string;
 	deviceCode: string;
 	type: DeviceType;
-	status: "ONLINE" | "OFFLINE";
+	status: DeviceStatus;
+	location: DeviceLocation;
 	wifiStrength: number;
 	firmwareVersion: string;
 	ipAddress: string;
 	lastSeen: string;
+}
+
+export interface AddDeviceRequest {
+	name: string;
+	type: DeviceType;
+	location: DeviceLocation;
 }

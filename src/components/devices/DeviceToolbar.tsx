@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
 	Card,
 	CardContent,
@@ -10,6 +12,9 @@ import {
 
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
+
+import { AddDeviceDialog } from "./dialogs/AddDeviceDialog";
+
 import type { DeviceType } from "../../types/api/device";
 import type { Dispatch, SetStateAction } from "react";
 
@@ -18,7 +23,9 @@ interface DeviceTypeOption {
 	label: string;
 	value: DeviceType | "ALL";
 }
+
 type DeviceStatus = "ONLINE" | "OFFLINE";
+
 interface DeviceStateOption {
 	id: string;
 	label: string;
@@ -42,74 +49,87 @@ const DeviceToolbar = ({
 	deviceStatus,
 	setDeviceStatus,
 }: DeviceToolbarProps) => {
+	const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
+
 	return (
-		<Card
-			elevation={0}
-			sx={{
-				borderRadius: 4,
-				border: "1px solid",
-				borderColor: "divider",
-				mb: 4,
-			}}
-		>
-			<CardContent>
-				<Stack
-					direction={{ xs: "column", md: "row" }}
-					spacing={2}
-					alignItems="center"
-				>
-					<TextField
-						fullWidth
-						placeholder="Search devices..."
-						InputProps={{
-							startAdornment: (
-								<InputAdornment position="start">
-									<SearchIcon />
-								</InputAdornment>
-							),
-						}}
-					/>
-
-					<TextField
-						select
-						label="Type"
-						size="small"
-						sx={{ minWidth: 170 }}
-						value={deviceType}
-						onChange={(e) =>
-							setDeviceType(e.target.value as DeviceType | "ALL")
-						}
+		<>
+			<Card
+				elevation={0}
+				sx={{
+					borderRadius: 4,
+					border: "1px solid",
+					borderColor: "divider",
+					mb: 4,
+				}}
+			>
+				<CardContent>
+					<Stack
+						direction={{ xs: "column", md: "row" }}
+						spacing={2}
+						alignItems="center"
 					>
-						{typeOptions.map((eachType) => (
-							<MenuItem key={eachType.id} value={eachType.value}>
-								{eachType.label}
-							</MenuItem>
-						))}
-					</TextField>
+						<TextField
+							fullWidth
+							placeholder="Search devices..."
+							InputProps={{
+								startAdornment: (
+									<InputAdornment position="start">
+										<SearchIcon />
+									</InputAdornment>
+								),
+							}}
+						/>
 
-					<TextField
-						select
-						label="Status"
-						size="small"
-						sx={{ minWidth: 170 }}
-						value={deviceStatus}
-						onChange={(e) =>
-							setDeviceStatus(e.target.value as DeviceStatus | "ALL")
-						}
-					>
-						{stateOptions.map((eachType) => (
-							<MenuItem key={eachType.id} value={eachType.value}>
-								{eachType.label}
-							</MenuItem>
-						))}
-					</TextField>
+						<TextField
+							select
+							label="Type"
+							size="small"
+							sx={{ minWidth: 170 }}
+							value={deviceType}
+							onChange={(e) =>
+								setDeviceType(e.target.value as DeviceType | "ALL")
+							}
+						>
+							{typeOptions.map((eachType) => (
+								<MenuItem key={eachType.id} value={eachType.value}>
+									{eachType.label}
+								</MenuItem>
+							))}
+						</TextField>
 
-					<Button variant="contained" startIcon={<AddIcon />}>
-						Add Device
-					</Button>
-				</Stack>
-			</CardContent>
-		</Card>
+						<TextField
+							select
+							label="Status"
+							size="small"
+							sx={{ minWidth: 170 }}
+							value={deviceStatus}
+							onChange={(e) =>
+								setDeviceStatus(e.target.value as DeviceStatus | "ALL")
+							}
+						>
+							{stateOptions.map((eachType) => (
+								<MenuItem key={eachType.id} value={eachType.value}>
+									{eachType.label}
+								</MenuItem>
+							))}
+						</TextField>
+
+						<Button
+							variant="contained"
+							startIcon={<AddIcon />}
+							onClick={() => setIsAddDialogOpen(true)}
+						>
+							Add Device
+						</Button>
+					</Stack>
+				</CardContent>
+			</Card>
+
+			<AddDeviceDialog
+				open={isAddDialogOpen}
+				onClose={() => setIsAddDialogOpen(false)}
+			/>
+		</>
 	);
 };
 
