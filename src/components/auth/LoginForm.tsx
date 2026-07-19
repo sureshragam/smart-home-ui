@@ -50,58 +50,66 @@ const LoginForm = () => {
 	};
 
 	return (
-		<Stack spacing={3}>
-			<TextField
-				label="Email Address"
-				type="email"
-				fullWidth
-				required
-				value={email}
-				onChange={(e) => setEmail(e.target.value)}
-			/>
+		<form
+			onSubmit={async (e) => {
+				e.preventDefault();
+				await handleLogin();
+			}}
+		>
+			<Stack spacing={3}>
+				<TextField
+					label="Email Address"
+					type="email"
+					fullWidth
+					required
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+				/>
 
-			<TextField
-				label="Password"
-				type={showPassword ? "text" : "password"}
-				fullWidth
-				required
-				value={password}
-				onChange={(e) => setPassword(e.target.value)}
-				InputProps={{
-					endAdornment: (
-						<InputAdornment position="end">
-							<IconButton
-								onClick={() => setShowPassword(!showPassword)}
-								edge="end"
-							>
-								{showPassword ? <VisibilityOff /> : <Visibility />}
-							</IconButton>
-						</InputAdornment>
-					),
-				}}
-			/>
+				<TextField
+					label="Password"
+					type={showPassword ? "text" : "password"}
+					fullWidth
+					required
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					InputProps={{
+						endAdornment: (
+							<InputAdornment position="end">
+								<IconButton
+									onClick={() => setShowPassword(!showPassword)}
+									edge="end"
+									type="button"
+								>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+								</IconButton>
+							</InputAdornment>
+						),
+					}}
+				/>
 
-			<FormControlLabel control={<Checkbox />} label="Remember Me" />
+				<FormControlLabel control={<Checkbox />} label="Remember Me" />
 
-			<Button
-				variant="contained"
-				size="large"
-				fullWidth
-				onClick={handleLogin}
-				disabled={loading}
-			>
-				{loading ? "Signing In..." : "Sign In"}
-			</Button>
+				<Button
+					variant="contained"
+					size="large"
+					fullWidth
+					disabled={loading}
+					type="submit"
+				>
+					{loading ? "Signing In..." : "Sign In"}
+				</Button>
 
-			<Link
-				component={RouterLink}
-				to="/register"
-				underline="hover"
-				textAlign="center"
-			>
-				Don't have an account? Create one
-			</Link>
-		</Stack>
+				<Link
+					component={RouterLink}
+					to="/register"
+					underline="hover"
+					textAlign="center"
+				>
+					Don't have an account? Create one
+				</Link>
+			</Stack>
+		</form>
 	);
 };
 
