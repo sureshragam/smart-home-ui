@@ -30,6 +30,7 @@ const DEVICE_TYPES: DeviceType[] = [
 	"ARDUINO_NANO",
 	"RASPBERRY_PI",
 	"SMART_SWITCH",
+	"ANDROID_CAMERA",
 ];
 
 const DEVICE_LOCATIONS: DeviceLocation[] = [
