@@ -1,6 +1,4 @@
-import { Card, CardContent } from "@mui/material";
-
-import { getStreamUrl } from "../../api/cameraApi";
+import { Alert } from "@mui/material";
 
 interface Props {
 	deviceCode: string;
@@ -8,18 +6,10 @@ interface Props {
 
 export default function CameraStream({ deviceCode }: Readonly<Props>) {
 	return (
-		<Card>
-			<CardContent>
-				<img
-					src={getStreamUrl(deviceCode)}
-					alt="Camera Stream"
-					style={{
-						width: "100%",
-						borderRadius: 8,
-						display: "block",
-					}}
-				/>
-			</CardContent>
-		</Card>
+		<Alert severity="info">
+			Live camera streaming is available only on the local network.
+			<br />
+			Device: <strong>{deviceCode}</strong>
+		</Alert>
 	);
 }
