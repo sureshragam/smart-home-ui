@@ -1,6 +1,6 @@
 import { Alert } from "@mui/material";
 
-import { DeviceResponse } from "../../types/api/device";
+import type { DeviceResponse } from "../../types/api/device";
 
 interface Props {
 	device: DeviceResponse;

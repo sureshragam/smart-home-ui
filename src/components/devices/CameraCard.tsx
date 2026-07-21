@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 
 import CameraStream from "./CameraStream";
 
-import { DeviceResponse } from "../../types/api/device";
+import type { DeviceResponse } from "../../types/api/device";
 
 interface Props {
 	device: DeviceResponse;

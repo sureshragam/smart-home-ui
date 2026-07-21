@@ -19,11 +19,10 @@ import { useDevice } from "../../hooks/useDevice";
 export default function DeviceDetailsPage() {
 	const { deviceCode } = useParams();
 
+	const { data: device, isLoading } = useDevice(deviceCode ?? "");
 	if (!deviceCode) {
 		return <Alert severity="error">Device not found.</Alert>;
 	}
-
-	const { data: device, isLoading } = useDevice(deviceCode);
 
 	if (isLoading) {
 		return <CircularProgress />;
