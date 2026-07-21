@@ -8,9 +8,11 @@ import RegisterPage from "../pages/Auth/Register";
 
 import DashboardPage from "../pages/Dashboard";
 import DevicesPage from "../pages/Devices";
+import DeviceDetailsPage from "../pages/Devices/DeviceDetailsPage";
 import AnalyticsPage from "../pages/Analytics";
 import AutomationsPage from "../pages/Automations";
 import SettingsPage from "../pages/Settings";
+
 import ProtectedRoute from "../routes/ProtectedRoute";
 import PublicRoute from "../routes/PublicRoute";
 
@@ -49,7 +51,16 @@ const router = createHashRouter([
 					},
 					{
 						path: "devices",
-						element: <DevicesPage />,
+						children: [
+							{
+								index: true,
+								element: <DevicesPage />,
+							},
+							{
+								path: ":deviceCode",
+								element: <DeviceDetailsPage />,
+							},
+						],
 					},
 					{
 						path: "analytics",
@@ -67,6 +78,8 @@ const router = createHashRouter([
 			},
 		],
 	},
+
+	// Fallback Route
 	{
 		path: "*",
 		element: <Navigate to="/" replace />,

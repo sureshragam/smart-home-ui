@@ -9,12 +9,13 @@ import {
 
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import WifiIcon from "@mui/icons-material/Wifi";
 import SensorsIcon from "@mui/icons-material/Sensors";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import MemoryIcon from "@mui/icons-material/Memory";
+
+import { useNavigate } from "react-router-dom";
 
 import type { DeviceResponse } from "../../types/api/device";
 
@@ -39,8 +40,23 @@ const getDeviceIcon = (type: string) => {
 };
 
 const DeviceTableRow = ({ device }: DeviceTableRowProps) => {
+	const navigate = useNavigate();
+
+	const handleRowClick = () => {
+		navigate(`/devices/${device.deviceCode}`);
+	};
+
 	return (
-		<TableRow hover>
+		<TableRow
+			hover
+			onClick={handleRowClick}
+			sx={{
+				cursor: "pointer",
+				"&:hover": {
+					backgroundColor: "action.hover",
+				},
+			}}
+		>
 			<TableCell>
 				<Chip
 					label={device.status}
@@ -78,11 +94,21 @@ const DeviceTableRow = ({ device }: DeviceTableRowProps) => {
 			<TableCell>{device.lastSeen}</TableCell>
 
 			<TableCell align="right">
-				<IconButton color="primary">
+				<IconButton
+					color="primary"
+					onClick={(e) => {
+						e.stopPropagation();
+					}}
+				>
 					<EditIcon />
 				</IconButton>
 
-				<IconButton color="error">
+				<IconButton
+					color="error"
+					onClick={(e) => {
+						e.stopPropagation();
+					}}
+				>
 					<DeleteIcon />
 				</IconButton>
 			</TableCell>

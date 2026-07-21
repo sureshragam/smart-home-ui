@@ -8,6 +8,14 @@ export const getDevices = async (): Promise<DeviceResponse[]> => {
 	return data;
 };
 
+export const getDevice = async (
+	deviceCode: string,
+): Promise<DeviceResponse> => {
+	const { data } = await api.get<DeviceResponse>(`/devices/${deviceCode}`);
+
+	return data;
+};
+
 export const addDevice = async (
 	request: AddDeviceRequest,
 ): Promise<DeviceResponse> => {
