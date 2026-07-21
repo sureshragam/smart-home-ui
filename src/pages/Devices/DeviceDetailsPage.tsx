@@ -4,6 +4,7 @@ import {
 	Card,
 	CardContent,
 	Chip,
+	CircularProgress,
 	Divider,
 	Grid,
 	Stack,
@@ -13,6 +14,7 @@ import { useParams } from "react-router-dom";
 
 import CameraCard from "../../components/devices/CameraCard";
 import PageHeader from "../../components/common/PageHeader";
+import { useDevice } from "../../hooks/useDevice";
 
 export default function DeviceDetailsPage() {
 	const { deviceCode } = useParams();
@@ -21,12 +23,21 @@ export default function DeviceDetailsPage() {
 		return <Alert severity="error">Device not found.</Alert>;
 	}
 
+	const { data: device, isLoading } = useDevice(deviceCode);
+
+	if (isLoading) {
+		return <CircularProgress />;
+	}
+
+	if (!device) {
+		return <Alert severity="error">Unable to load device.</Alert>;
+	}
+
 	return (
 		<Box>
-			<PageHeader title={deviceCode} subtitle="Device Details" />
+			<PageHeader title={device.name} subtitle="Device Details" />
 
 			<Grid container spacing={3}>
-				{/* Device Information */}
 				<Grid size={{ xs: 12 }}>
 					<Card>
 						<CardContent>
@@ -38,7 +49,10 @@ export default function DeviceDetailsPage() {
 							>
 								<Typography variant="h6">Device Information</Typography>
 
-								<Chip label="ONLINE" color="success" />
+								<Chip
+									label={device.status}
+									color={device.status === "ONLINE" ? "success" : "error"}
+								/>
 							</Stack>
 
 							<Divider sx={{ mb: 2 }} />
@@ -49,7 +63,7 @@ export default function DeviceDetailsPage() {
 										Device Code
 									</Typography>
 
-									<Typography fontWeight={600}>{deviceCode}</Typography>
+									<Typography>{device.deviceCode}</Typography>
 								</Grid>
 
 								<Grid size={{ xs: 12, md: 6 }}>
@@ -57,7 +71,7 @@ export default function DeviceDetailsPage() {
 										Type
 									</Typography>
 
-									<Typography>CAMERA DEVICE</Typography>
+									<Typography>{device.type}</Typography>
 								</Grid>
 
 								<Grid size={{ xs: 12, md: 6 }}>
@@ -65,7 +79,7 @@ export default function DeviceDetailsPage() {
 										IP Address
 									</Typography>
 
-									<Typography>—</Typography>
+									<Typography>{device.ipAddress}</Typography>
 								</Grid>
 
 								<Grid size={{ xs: 12, md: 6 }}>
@@ -73,7 +87,7 @@ export default function DeviceDetailsPage() {
 										Firmware
 									</Typography>
 
-									<Typography>—</Typography>
+									<Typography>{device.firmwareVersion}</Typography>
 								</Grid>
 
 								<Grid size={{ xs: 12, md: 6 }}>
@@ -81,7 +95,7 @@ export default function DeviceDetailsPage() {
 										Wi-Fi
 									</Typography>
 
-									<Typography>—</Typography>
+									<Typography>{device.wifiStrength}%</Typography>
 								</Grid>
 
 								<Grid size={{ xs: 12, md: 6 }}>
@@ -89,26 +103,22 @@ export default function DeviceDetailsPage() {
 										Last Seen
 									</Typography>
 
-									<Typography>—</Typography>
+									<Typography>{device.lastSeen}</Typography>
 								</Grid>
 							</Grid>
 						</CardContent>
 					</Card>
 				</Grid>
 
-				{/* Camera */}
 				<Grid size={{ xs: 12, lg: 8 }}>
-					<CameraCard deviceCode={deviceCode} />
+					<CameraCard device={device} />
 				</Grid>
 
-				{/* Reserved for future widgets */}
 				<Grid size={{ xs: 12, lg: 4 }}>
 					<Stack spacing={2}>
 						<Card>
 							<CardContent>
-								<Typography variant="h6" gutterBottom>
-									Health
-								</Typography>
+								<Typography variant="h6">Health</Typography>
 
 								<Typography color="text.secondary">Coming Soon</Typography>
 							</CardContent>
@@ -116,19 +126,7 @@ export default function DeviceDetailsPage() {
 
 						<Card>
 							<CardContent>
-								<Typography variant="h6" gutterBottom>
-									Logs
-								</Typography>
-
-								<Typography color="text.secondary">Coming Soon</Typography>
-							</CardContent>
-						</Card>
-
-						<Card>
-							<CardContent>
-								<Typography variant="h6" gutterBottom>
-									Configuration
-								</Typography>
+								<Typography variant="h6">Logs</Typography>
 
 								<Typography color="text.secondary">Coming Soon</Typography>
 							</CardContent>

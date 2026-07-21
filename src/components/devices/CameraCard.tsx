@@ -1,17 +1,17 @@
 import { Stack } from "@mui/material";
 
-import CameraControls from "./CameraControls";
 import CameraStream from "./CameraStream";
 
+import { DeviceResponse } from "../../types/api/device";
+
 interface Props {
-	deviceCode: string;
+	device: DeviceResponse;
 }
 
-export default function CameraCard({ deviceCode }: Readonly<Props>) {
+export default function CameraCard({ device }: Readonly<Props>) {
 	return (
 		<Stack spacing={2}>
-			<CameraStream deviceCode={deviceCode} />
-			<CameraControls />
+			<CameraStream device={device} />
 		</Stack>
 	);
 }

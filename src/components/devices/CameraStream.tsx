@@ -1,15 +1,28 @@
 import { Alert } from "@mui/material";
 
+import { DeviceResponse } from "../../types/api/device";
+
 interface Props {
-	deviceCode: string;
+	device: DeviceResponse;
 }
 
-export default function CameraStream({ deviceCode }: Readonly<Props>) {
+export default function CameraStream({ device }: Readonly<Props>) {
+	if (!device.ipAddress) {
+		return (
+			<Alert severity="warning">Device has not reported its IP address.</Alert>
+		);
+	}
+
+	const streamUrl = `http://${device.ipAddress}:8081/stream`;
+
 	return (
-		<Alert severity="info">
-			Live camera streaming is available only on the local network.
-			<br />
-			Device: <strong>{deviceCode}</strong>
-		</Alert>
+		<img
+			src={streamUrl}
+			alt="Camera Stream"
+			style={{
+				width: "100%",
+				borderRadius: 8,
+			}}
+		/>
 	);
 }
