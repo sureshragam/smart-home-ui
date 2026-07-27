@@ -20,6 +20,10 @@ import DisplayPage from "../pages/Display";
 const router = createHashRouter([
 	// Public Routes
 	{
+		path: "/display",
+		element: <DisplayPage />,
+	},
+	{
 		element: <PublicRoute />,
 		children: [
 			{
@@ -76,10 +80,6 @@ const router = createHashRouter([
 						element: <SettingsPage />,
 					},
 				],
-			},
-			{
-				path: "/display",
-				element: <DisplayPage />,
 			},
 		],
 	},
