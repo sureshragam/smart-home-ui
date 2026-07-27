@@ -1,44 +1,62 @@
-import AcUnitRoundedIcon from "@mui/icons-material/AcUnitRounded";
-import CloudRoundedIcon from "@mui/icons-material/CloudRounded";
-import NightsStayRoundedIcon from "@mui/icons-material/NightsStayRounded";
-import WbSunnyRoundedIcon from "@mui/icons-material/WbSunnyRounded";
-import WhatshotRoundedIcon from "@mui/icons-material/WhatshotRounded";
+import { Box, Stack, Typography } from "@mui/material";
 
-interface WeatherIconProps {
-	temperature: number;
-	date: Date;
+import type { DisplayData } from "../types";
+import WeatherIcon from "./WeatherIcon";
+
+interface HeaderSectionProps {
+	display: DisplayData;
 }
 
-const WeatherIcon = ({ temperature, date }: WeatherIconProps) => {
-	const hour = date.getHours();
+const HeaderSection = ({ display }: HeaderSectionProps) => {
+	return (
+		<Box display="flex" justifyContent="space-between" alignItems="flex-start">
+			{/* Left Section */}
+			<Stack spacing={0.5}>
+				<Typography fontSize={36} fontWeight={600}>
+					{display.date.toLocaleDateString("en-US", {
+						weekday: "long",
+					})}
+				</Typography>
 
-	const iconStyle = {
-		fontSize: 72,
-		color: "rgba(255,255,255,0.92)",
-	};
+				<Typography fontSize={22}>
+					{display.date.toLocaleDateString("en-US", {
+						day: "numeric",
+						month: "long",
+						year: "numeric",
+					})}
+				</Typography>
 
-	// Night
-	if (hour >= 19 || hour < 6) {
-		return <NightsStayRoundedIcon sx={iconStyle} />;
-	}
+				<Typography fontSize={48} fontWeight={300}>
+					{display.date.toLocaleTimeString([], {
+						hour: "2-digit",
+						minute: "2-digit",
+					})}
+				</Typography>
+			</Stack>
 
-	// Cold
-	if (temperature < 15) {
-		return <AcUnitRoundedIcon sx={iconStyle} />;
-	}
+			{/* Right Section */}
+			<Stack alignItems="center" spacing={1}>
+				<WeatherIcon temperature={display.temperature} date={display.date} />
 
-	// Pleasant
-	if (temperature < 25) {
-		return <CloudRoundedIcon sx={iconStyle} />;
-	}
+				<Typography fontSize={120} fontWeight={200} lineHeight={1}>
+					{display.temperature.toFixed(1)}°
+				</Typography>
 
-	// Warm
-	if (temperature < 35) {
-		return <WbSunnyRoundedIcon sx={iconStyle} />;
-	}
+				<Typography fontSize={30} fontWeight={600}>
+					{getComfortStatus(display.temperature)}
+				</Typography>
 
-	// Hot
-	return <WhatshotRoundedIcon sx={iconStyle} />;
+				<Typography fontSize={22}>{display.roomName}</Typography>
+			</Stack>
+		</Box>
+	);
 };
 
-export default WeatherIcon;
+const getComfortStatus = (temperature: number): string => {
+	if (temperature < 20) return "Cold";
+	if (temperature < 25) return "Comfortable";
+	if (temperature < 30) return "Warm";
+	return "Hot";
+};
+
+export default HeaderSection;
