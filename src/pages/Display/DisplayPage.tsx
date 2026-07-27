@@ -16,7 +16,7 @@ const DisplayPage = () => {
 		<AnimatedBackground>
 			<Box
 				sx={{
-					minHeight: "100dvh",
+					minHeight: "100vh",
 					width: "100%",
 					color: "common.white",
 
@@ -58,7 +58,7 @@ const DisplayPage = () => {
 				>
 					<Stack
 						sx={{
-							minHeight: "100dvh",
+							minHeight: "vh",
 						}}
 					>
 						{/* Header */}
