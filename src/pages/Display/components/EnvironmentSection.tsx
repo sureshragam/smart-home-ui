@@ -168,7 +168,7 @@ const EnvironmentSection = ({ display }: EnvironmentSectionProps) => {
 					/>
 				}
 				label="Air Quality"
-				value={display.airQuality}
+				value={`${display.airQuality} (${display.airQualityPpm} PPM)`}
 				valueColor={getAirQualityColor(display.airQuality)}
 			/>
 

@@ -4,11 +4,22 @@ import { useEnvironmentData } from "../../../hooks/useEnvironmentData";
 
 import type { DisplayData } from "../types";
 
-const getAirQualityLabel = (airQuality: number): string => {
-	if (airQuality <= 50) return "Good";
-	if (airQuality <= 100) return "Moderate";
-	if (airQuality <= 150) return "Poor";
+export const getAirQualityStatus = (ppm: number): string => {
+	if (ppm < 650) return "Excellent";
+	if (ppm < 850) return "Good";
+	if (ppm < 1100) return "Moderate";
+	if (ppm < 1500) return "Poor";
+
 	return "Hazardous";
+};
+
+export const getAirQualityColor = (ppm: number): string => {
+	if (ppm < 650) return "#22C55E";
+	if (ppm < 850) return "#4ADE80";
+	if (ppm < 1100) return "#FACC15";
+	if (ppm < 1500) return "#FB923C";
+
+	return "#EF4444";
 };
 
 const useDisplayData = (): DisplayData => {
@@ -18,24 +29,32 @@ const useDisplayData = (): DisplayData => {
 		if (!environment) {
 			return {
 				date: new Date(),
-				roomName: "Living Room",
+				roomName: "Bedroom",
 				temperature: 0,
 				feelsLike: 0,
 				humidity: 0,
 				pressure: 0,
+
 				airQuality: "Unknown",
+				airQualityPpm: 0,
+
 				lastUpdated: new Date(),
 			};
 		}
 
 		return {
 			date: new Date(),
-			roomName: "Bedroom Room",
+			roomName: "Bedroom",
+
 			temperature: environment.temperature,
 			feelsLike: environment.temperature, // Replace when backend provides feelsLike
+
 			humidity: environment.humidity,
 			pressure: environment.pressure,
-			airQuality: getAirQualityLabel(environment.airQuality),
+
+			airQuality: getAirQualityStatus(environment.airQuality),
+			airQualityPpm: environment.airQuality,
+
 			lastUpdated: new Date(environment.lastUpdated),
 		};
 	}, [environment]);
