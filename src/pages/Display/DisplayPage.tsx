@@ -1,42 +1,61 @@
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
-import HeaderSection from "./components/HeaderSection";
-import MetricsSection from "./components/MetricSection";
 import AnimatedBackground from "./components/AnimatedBackground";
+import EnvironmentSection from "./components/EnvironmentSection";
+import HeaderSection from "./components/HeaderSection";
+
+import useDisplayData from "./hooks/useDisplayData";
 
 const DisplayPage = () => {
+	const display = useDisplayData();
+
 	return (
 		<AnimatedBackground>
 			<Box
 				sx={{
-					width: "100vw",
-					height: "100vh",
+					minHeight: "100dvh",
+					width: "100%",
+					color: "common.white",
 
-					display: "flex",
-					flexDirection: "column",
+					px: {
+						xs: 3,
+						sm: 4,
+						md: 6,
+						lg: 8,
+					},
 
-					justifyContent: "space-between",
-
-					p: 6,
-
-					color: "white",
+					py: {
+						xs: 3,
+						sm: 4,
+						md: 5,
+						lg: 6,
+					},
 				}}
 			>
-				<HeaderSection />
-
-				<MetricsSection />
-
 				<Box
 					sx={{
-						display: "flex",
-						justifyContent: "space-between",
-						opacity: 0.75,
-						fontSize: 18,
+						maxWidth: 1400,
+						height: "100%",
+						mx: "auto",
 					}}
 				>
-					<span>Last Updated</span>
+					<Stack
+						sx={{
+							minHeight: "100dvh",
+						}}
+					>
+						{/* Header */}
+						<HeaderSection display={display} />
 
-					<span>09:42:16 AM</span>
+						{/* Spacer */}
+						<Box flex={1} />
+
+						{/* Environment */}
+						<EnvironmentSection display={display} />
+
+						{/* Spacer */}
+						<Box flex={1} />
+					</Stack>
 				</Box>
 			</Box>
 		</AnimatedBackground>
