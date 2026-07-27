@@ -7,6 +7,6 @@ export const useDevice = (deviceCode: string) => {
 		queryKey: ["device", deviceCode],
 		queryFn: () => getDevice(deviceCode),
 		enabled: !!deviceCode,
-		refetchInterval: 5000, // We'll replace with SSE later
+		refetchOnWindowFocus: false,
 	});
 };

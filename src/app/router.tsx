@@ -15,6 +15,7 @@ import SettingsPage from "../pages/Settings";
 
 import ProtectedRoute from "../routes/ProtectedRoute";
 import PublicRoute from "../routes/PublicRoute";
+import DisplayPage from "../pages/Display";
 
 const router = createHashRouter([
 	// Public Routes
@@ -75,6 +76,10 @@ const router = createHashRouter([
 						element: <SettingsPage />,
 					},
 				],
+			},
+			{
+				path: "/display",
+				element: <DisplayPage />,
 			},
 		],
 	},
