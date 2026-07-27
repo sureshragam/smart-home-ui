@@ -5,10 +5,13 @@ import EnvironmentSection from "./components/EnvironmentSection";
 import HeaderSection from "./components/HeaderSection";
 
 import useDisplayData from "./hooks/useDisplayData";
+import SystemStatusBar from "./components/SystemStatusBar";
+import { useDevicesData } from "../../hooks/useDevicesData";
 
 const DisplayPage = () => {
 	const display = useDisplayData();
-
+	const { data: devices } = useDevicesData();
+	const esp32 = devices?.find((device) => device.type === "ESP32");
 	return (
 		<AnimatedBackground>
 			<Box
@@ -75,6 +78,13 @@ const DisplayPage = () => {
 
 						{/* Environment */}
 						<EnvironmentSection display={display} />
+						<EnvironmentSection display={display} />
+
+						<SystemStatusBar
+							esp32Online={esp32?.status === "ONLINE"}
+							wifiStrength={esp32?.wifiStrength ?? 0}
+							lastSeen={esp32?.lastSeen}
+						/>
 					</Stack>
 				</Box>
 			</Box>
