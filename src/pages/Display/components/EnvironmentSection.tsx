@@ -27,9 +27,12 @@ const EnvironmentCard = ({
 		<Paper
 			elevation={0}
 			sx={{
-				bgcolor: "rgba(255,255,255,0.08)",
+				bgcolor: "rgba(255,255,255,0.12)",
+
+				border: "1px solid rgba(255,255,255,0.18)",
+
+				boxShadow: "0 10px 40px rgba(0,0,0,.15)",
 				backdropFilter: "blur(16px)",
-				border: "1px solid rgba(255,255,255,0.15)",
 				borderRadius: 4,
 
 				px: 4,
@@ -93,7 +96,7 @@ const EnvironmentSection = ({ display }: EnvironmentSectionProps) => {
 			spacing={2.5}
 			sx={{
 				width: "100%",
-				maxWidth: 1100,
+				maxWidth: 1300,
 				mx: "auto",
 			}}
 		>
