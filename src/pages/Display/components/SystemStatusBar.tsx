@@ -9,24 +9,23 @@ interface SystemStatusBarProps {
 	lastSeen?: string;
 }
 
-const getWifiQuality = (strength: number) => {
-	if (strength >= 80) return "Excellent";
-	if (strength >= 60) return "Good";
-	if (strength >= 40) return "Fair";
-	if (strength > 0) return "Poor";
+const getWifiQuality = (rssi: number) => {
+	if (rssi >= -50) return "Excellent";
+	if (rssi >= -60) return "Good";
+	if (rssi >= -70) return "Fair";
+	if (rssi >= -80) return "Poor";
 
-	return "Offline";
+	return "Very Poor";
 };
 
-const getWifiColor = (strength: number) => {
-	if (strength >= 80) return "#22C55E";
-	if (strength >= 60) return "#4ADE80";
-	if (strength >= 40) return "#FACC15";
-	if (strength > 0) return "#EF4444";
+const getWifiColor = (rssi: number) => {
+	if (rssi >= -50) return "#22C55E"; // Green
+	if (rssi >= -60) return "#4ADE80"; // Light Green
+	if (rssi >= -70) return "#FACC15"; // Yellow
+	if (rssi >= -80) return "#FB923C"; // Orange
 
-	return "#9CA3AF";
+	return "#EF4444"; // Red
 };
-
 const getLastUpdated = (lastSeen?: string) => {
 	if (!lastSeen) return "Never";
 
