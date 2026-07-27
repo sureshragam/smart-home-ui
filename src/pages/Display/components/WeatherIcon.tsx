@@ -10,8 +10,14 @@ interface WeatherIconProps {
 }
 
 const iconStyle = {
-	fontSize: 88,
-	color: "rgba(255,255,255,0.92)",
+	fontSize: {
+		xs: 82,
+		sm: 90,
+		md: 100,
+		lg: 108,
+	},
+	color: "rgba(255,255,255,0.94)",
+	filter: "drop-shadow(0 8px 24px rgba(255,255,255,0.18))",
 };
 
 const WeatherIcon = ({ temperature, date }: WeatherIconProps) => {
@@ -23,11 +29,21 @@ const WeatherIcon = ({ temperature, date }: WeatherIconProps) => {
 			<NightsStayRoundedIcon
 				sx={{
 					...iconStyle,
-					animation: "pulse 4s ease-in-out infinite",
-					"@keyframes pulse": {
-						"0%": { opacity: 0.7, transform: "scale(1)" },
-						"50%": { opacity: 1, transform: "scale(1.08)" },
-						"100%": { opacity: 0.7, transform: "scale(1)" },
+					animation: "moonPulse 5s ease-in-out infinite",
+
+					"@keyframes moonPulse": {
+						"0%": {
+							opacity: 0.75,
+							transform: "scale(1)",
+						},
+						"50%": {
+							opacity: 1,
+							transform: "scale(1.08)",
+						},
+						"100%": {
+							opacity: 0.75,
+							transform: "scale(1)",
+						},
 					},
 				}}
 			/>
@@ -40,10 +56,15 @@ const WeatherIcon = ({ temperature, date }: WeatherIconProps) => {
 			<AcUnitRoundedIcon
 				sx={{
 					...iconStyle,
-					animation: "spin 20s linear infinite",
-					"@keyframes spin": {
-						from: { transform: "rotate(0deg)" },
-						to: { transform: "rotate(360deg)" },
+					animation: "snowSpin 18s linear infinite",
+
+					"@keyframes snowSpin": {
+						from: {
+							transform: "rotate(0deg)",
+						},
+						to: {
+							transform: "rotate(360deg)",
+						},
 					},
 				}}
 			/>
@@ -56,11 +77,24 @@ const WeatherIcon = ({ temperature, date }: WeatherIconProps) => {
 			<CloudRoundedIcon
 				sx={{
 					...iconStyle,
-					animation: "float 4s ease-in-out infinite",
-					"@keyframes float": {
-						"0%": { transform: "translateX(0px)" },
-						"50%": { transform: "translateX(8px)" },
-						"100%": { transform: "translateX(0px)" },
+					animation: "cloudFloat 5s ease-in-out infinite",
+
+					"@keyframes cloudFloat": {
+						"0%": {
+							transform: "translateX(0px)",
+						},
+						"25%": {
+							transform: "translateX(6px)",
+						},
+						"50%": {
+							transform: "translateX(12px)",
+						},
+						"75%": {
+							transform: "translateX(6px)",
+						},
+						"100%": {
+							transform: "translateX(0px)",
+						},
 					},
 				}}
 			/>
@@ -73,10 +107,15 @@ const WeatherIcon = ({ temperature, date }: WeatherIconProps) => {
 			<WbSunnyRoundedIcon
 				sx={{
 					...iconStyle,
-					animation: "spin 60s linear infinite",
-					"@keyframes spin": {
-						from: { transform: "rotate(0deg)" },
-						to: { transform: "rotate(360deg)" },
+					animation: "sunRotate 45s linear infinite",
+
+					"@keyframes sunRotate": {
+						from: {
+							transform: "rotate(0deg)",
+						},
+						to: {
+							transform: "rotate(360deg)",
+						},
 					},
 				}}
 			/>
@@ -88,11 +127,18 @@ const WeatherIcon = ({ temperature, date }: WeatherIconProps) => {
 		<WhatshotRoundedIcon
 			sx={{
 				...iconStyle,
-				animation: "flame 1.5s ease-in-out infinite",
-				"@keyframes flame": {
-					"0%": { transform: "scale(1)" },
-					"50%": { transform: "scale(1.12)" },
-					"100%": { transform: "scale(1)" },
+				animation: "firePulse 1.6s ease-in-out infinite",
+
+				"@keyframes firePulse": {
+					"0%": {
+						transform: "scale(1)",
+					},
+					"50%": {
+						transform: "scale(1.15)",
+					},
+					"100%": {
+						transform: "scale(1)",
+					},
 				},
 			}}
 		/>

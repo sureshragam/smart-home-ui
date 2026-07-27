@@ -37,6 +37,20 @@ const DisplayPage = () => {
 						maxWidth: 1400,
 						height: "100%",
 						mx: "auto",
+
+						opacity: 0,
+						animation: "fadeIn 1.2s ease forwards",
+
+						"@keyframes fadeIn": {
+							from: {
+								opacity: 0,
+								transform: "translateY(20px)",
+							},
+							to: {
+								opacity: 1,
+								transform: "translateY(0)",
+							},
+						},
 					}}
 				>
 					<Stack
@@ -47,14 +61,20 @@ const DisplayPage = () => {
 						{/* Header */}
 						<HeaderSection display={display} />
 
-						{/* Spacer */}
-						<Box flex={1} />
+						{/* Space between header and environment */}
+						<Box
+							sx={{
+								height: {
+									xs: 48,
+									sm: 64,
+									md: 80,
+									lg: 100,
+								},
+							}}
+						/>
 
 						{/* Environment */}
 						<EnvironmentSection display={display} />
-
-						{/* Spacer */}
-						<Box flex={1} />
 					</Stack>
 				</Box>
 			</Box>
