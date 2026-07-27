@@ -78,7 +78,6 @@ const DisplayPage = () => {
 
 						{/* Environment */}
 						<EnvironmentSection display={display} />
-						<EnvironmentSection display={display} />
 
 						<SystemStatusBar
 							esp32Online={esp32?.status === "ONLINE"}
