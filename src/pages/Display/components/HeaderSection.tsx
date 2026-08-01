@@ -31,11 +31,11 @@ const HeaderSection = ({ display }: HeaderSectionProps) => {
 	});
 
 	return (
-		<Box display="flex" justifyContent="space-between" alignItems="flex-start">
+		<Box display="flex" justifyContent="space-between" alignItems="center">
 			{/* Left */}
-			<Stack spacing={0.5}>
+			<Stack spacing={0.3}>
 				<Typography
-					fontSize={22}
+					fontSize={18}
 					fontWeight={500}
 					sx={{
 						opacity: 0.8,
@@ -45,16 +45,16 @@ const HeaderSection = ({ display }: HeaderSectionProps) => {
 					{getGreeting(display.date)}
 				</Typography>
 
-				<Typography fontSize={40} fontWeight={700}>
+				<Typography fontSize={30} fontWeight={700}>
 					{display.date.toLocaleDateString("en-US", {
 						weekday: "long",
 					})}
 				</Typography>
 
 				<Typography
-					fontSize={24}
+					fontSize={18}
 					sx={{
-						opacity: 0.85,
+						opacity: 0.8,
 					}}
 				>
 					{display.date.toLocaleDateString("en-US", {
@@ -67,54 +67,40 @@ const HeaderSection = ({ display }: HeaderSectionProps) => {
 				<Box
 					key={currentTime}
 					sx={{
-						animation: "timeFade .4s ease",
+						animation: "timeFade .35s ease",
 
 						"@keyframes timeFade": {
 							from: {
 								opacity: 0,
-								transform: "translateY(10px)",
+								transform: "translateY(6px)",
 							},
 							to: {
 								opacity: 1,
-								transform: "translateY(0px)",
+								transform: "translateY(0)",
 							},
 						},
 					}}
 				>
-					<Typography fontSize={60} fontWeight={300} letterSpacing={1}>
+					<Typography fontSize={42} fontWeight={300} letterSpacing={1}>
 						{currentTime}
 					</Typography>
 				</Box>
 			</Stack>
 
 			{/* Right */}
-			<Stack alignItems="center" spacing={1}>
+			<Stack alignItems="center" spacing={0.5}>
 				<WeatherIcon temperature={display.temperature} date={display.date} />
 
-				<Typography
-					fontWeight={200}
-					lineHeight={1}
-					fontSize={{
-						xs: 90,
-						md: 105,
-						lg: 112,
-					}}
-				>
+				<Typography fontWeight={200} lineHeight={1} fontSize={72}>
 					{display.temperature.toFixed(1)}°
 				</Typography>
 
-				<Typography
-					fontSize={28}
-					fontWeight={600}
-					sx={{
-						opacity: 0.95,
-					}}
-				>
+				<Typography fontSize={22} fontWeight={600}>
 					{getComfortStatus(display.temperature)}
 				</Typography>
 
 				<Typography
-					fontSize={22}
+					fontSize={18}
 					sx={{
 						opacity: 0.75,
 						letterSpacing: 1,
