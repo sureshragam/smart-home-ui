@@ -1,48 +1,48 @@
-import { Box, Stack } from "@mui/material";
+import { Box } from "@mui/material";
 
 import AnimatedBackground from "./components/AnimatedBackground";
-
+import EnvironmentSection from "./components/EnvironmentSection";
 import HeaderSection from "./components/HeaderSection";
+import SystemStatusBar from "./components/SystemStatusBar";
 
 import useDisplayData from "./hooks/useDisplayData";
-import SystemStatusBar from "./components/SystemStatusBar";
 import { useDevicesData } from "../../hooks/useDevicesData";
-import EnvironmentSection from "./components/EnvironmentSection";
 
 const DisplayPage = () => {
 	const display = useDisplayData();
+
 	const { data: devices } = useDevicesData();
+
 	const esp32 = devices?.find((device) => device.type === "ESP32");
+
 	return (
 		<AnimatedBackground>
 			<Box
 				sx={{
-					width: "100%",
+					position: "fixed",
+					inset: 0,
+
 					color: "common.white",
 
-					px: {
-						xs: 3,
-						sm: 4,
-						md: 6,
-						lg: 8,
-					},
+					display: "flex",
+					justifyContent: "center",
 
-					py: {
-						xs: 3,
-						sm: 4,
-						md: 5,
-						lg: 6,
-					},
+					overflow: "hidden",
+
+					px: 4,
+					py: 3,
 				}}
 			>
 				<Box
 					sx={{
+						width: "100%",
 						maxWidth: 1400,
-						height: "100%",
-						mx: "auto",
+
+						display: "flex",
+						flexDirection: "column",
 
 						opacity: 0,
-						animation: "fadeIn 1.2s ease forwards",
+						animation: "fadeIn 0.8s ease forwards",
 
 						"@keyframes fadeIn": {
 							from: {
@@ -56,35 +56,19 @@ const DisplayPage = () => {
 						},
 					}}
 				>
-					<Stack
-						sx={{
-							minHeight: "100%",
-						}}
-					>
-						{/* Header */}
-						<HeaderSection display={display} />
+					<HeaderSection display={display} />
 
-						{/* Space between header and environment */}
-						<Box
-							sx={{
-								height: {
-									xs: 48,
-									sm: 64,
-									md: 80,
-									lg: 100,
-								},
-							}}
-						/>
+					<Box sx={{ flex: 1, minHeight: 20 }} />
 
-						{/* Environment */}
-						<EnvironmentSection display={display} />
+					<EnvironmentSection display={display} />
 
-						<SystemStatusBar
-							esp32Online={esp32?.status === "ONLINE"}
-							wifiStrength={esp32?.wifiStrength ?? 0}
-							lastSeen={esp32?.lastSeen}
-						/>
-					</Stack>
+					<Box sx={{ flex: 1, minHeight: 20 }} />
+
+					<SystemStatusBar
+						esp32Online={esp32?.status === "ONLINE"}
+						wifiStrength={esp32?.wifiStrength ?? 0}
+						lastSeen={esp32?.lastSeen}
+					/>
 				</Box>
 			</Box>
 		</AnimatedBackground>
