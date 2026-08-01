@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 
 import AnimatedBackground from "./components/AnimatedBackground";
-import EnvironmentSection from "./components/EnvironmentSection";
+
 import HeaderSection from "./components/HeaderSection";
 
 import useDisplayData from "./hooks/useDisplayData";
@@ -16,7 +16,6 @@ const DisplayPage = () => {
 		<AnimatedBackground>
 			<Box
 				sx={{
-					minHeight: "100vh",
 					width: "100%",
 					color: "common.white",
 
@@ -58,7 +57,7 @@ const DisplayPage = () => {
 				>
 					<Stack
 						sx={{
-							minHeight: "vh",
+							minHeight: "100%",
 						}}
 					>
 						{/* Header */}
@@ -77,7 +76,7 @@ const DisplayPage = () => {
 						/>
 
 						{/* Environment */}
-						<EnvironmentSection display={display} />
+						{/* <EnvironmentSection display={display} /> */}
 
 						<SystemStatusBar
 							esp32Online={esp32?.status === "ONLINE"}
