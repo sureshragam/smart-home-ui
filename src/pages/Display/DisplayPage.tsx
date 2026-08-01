@@ -1,15 +1,20 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 export default function DisplayPage() {
 	return (
 		<Box
 			sx={{
-				background: "red",
-				width: "100%",
-				height: "100vh",
+				position: "fixed",
+				inset: 0,
+				backgroundColor: "red",
+				display: "flex",
+				alignItems: "center",
+				justifyContent: "center",
 			}}
 		>
-			<h1>Hello</h1>
+			<Typography variant="h2" color="white">
+				Hello
+			</Typography>
 		</Box>
 	);
 }
