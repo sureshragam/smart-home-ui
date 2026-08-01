@@ -1,17 +1,15 @@
+import { Box } from "@mui/material";
+
 export default function DisplayPage() {
 	return (
-		<div
-			style={{
-				background: "black",
-				color: "white",
+		<Box
+			sx={{
+				background: "red",
+				width: "100%",
 				height: "100vh",
-				display: "flex",
-				justifyContent: "center",
-				alignItems: "center",
-				fontSize: "40px",
 			}}
 		>
-			SAVI DISPLAY
-		</div>
+			<h1>Hello</h1>
+		</Box>
 	);
 }
