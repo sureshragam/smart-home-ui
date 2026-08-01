@@ -60,10 +60,8 @@ const AnimatedBackground = ({ children }: Props) => {
 	return (
 		<Box
 			sx={{
-				position: "relative",
-
-				width: "100vw",
-				height: "100vh",
+				position: "fixed",
+				inset: 0,
 
 				overflow: "hidden",
 
@@ -71,51 +69,51 @@ const AnimatedBackground = ({ children }: Props) => {
 
 				transition: "background 6s ease-in-out",
 
-				"&::before": {
-					content: '""',
+				// "&::before": {
+				// 	content: '""',
 
-					position: "absolute",
+				// 	position: "absolute",
 
-					top: "-25%",
-					left: "-15%",
+				// 	top: "-25%",
+				// 	left: "-15%",
 
-					width: "60vw",
-					height: "60vw",
+				// 	width: "60vw",
+				// 	height: "60vw",
 
-					borderRadius: "50%",
+				// 	borderRadius: "50%",
 
-					background:
-						"radial-gradient(circle, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 70%)",
+				// 	background:
+				// 		"radial-gradient(circle, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 70%)",
 
-					filter: "blur(70px)",
+				// 	filter: "blur(70px)",
 
-					animation: "ambientGlow 18s ease-in-out infinite alternate",
+				// 	animation: "ambientGlow 18s ease-in-out infinite alternate",
 
-					pointerEvents: "none",
-				},
+				// 	pointerEvents: "none",
+				// },
 
-				"&::after": {
-					content: '""',
+				// "&::after": {
+				// 	content: '""',
 
-					position: "absolute",
+				// 	position: "absolute",
 
-					bottom: "-20%",
-					right: "-15%",
+				// 	bottom: "-20%",
+				// 	right: "-15%",
 
-					width: "50vw",
-					height: "50vw",
+				// 	width: "50vw",
+				// 	height: "50vw",
 
-					borderRadius: "50%",
+				// 	borderRadius: "50%",
 
-					background:
-						"radial-gradient(circle, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 70%)",
+				// 	background:
+				// 		"radial-gradient(circle, rgba(255,255,255,.08) 0%, rgba(255,255,255,0) 70%)",
 
-					filter: "blur(80px)",
+				// 	filter: "blur(80px)",
 
-					animation: "ambientGlowReverse 22s ease-in-out infinite alternate",
+				// 	animation: "ambientGlowReverse 22s ease-in-out infinite alternate",
 
-					pointerEvents: "none",
-				},
+				// 	pointerEvents: "none",
+				// },
 
 				"@keyframes ambientGlow": {
 					from: {
