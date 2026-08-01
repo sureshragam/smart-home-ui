@@ -6,5 +6,7 @@ export const useEnvironmentData = () => {
 	return useQuery({
 		queryKey: QUERY_KEYS.environment,
 		queryFn: getEnvironment,
+		refetchInterval: 10000,
+		refetchOnWindowFocus: false,
 	});
 };

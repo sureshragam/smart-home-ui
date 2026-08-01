@@ -7,5 +7,7 @@ export const useDevicesData = () => {
 	return useQuery({
 		queryKey: QUERY_KEYS.devices,
 		queryFn: getDevices,
+		refetchInterval: 10000,
+		refetchOnWindowFocus: false,
 	});
 };
