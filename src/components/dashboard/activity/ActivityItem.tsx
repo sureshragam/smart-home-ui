@@ -43,16 +43,14 @@ const ActivityItem = ({
 		<>
 			<Stack
 				direction="row"
-				spacing={2}
-				sx={{
-					alignItems: "flex-start",
-					py: 1,
-				}}
+				alignItems="center"
+				spacing={1.5}
+				sx={{ py: 1.25, minWidth: 0 }}
 			>
 				<Box
 					sx={{
-						width: 36,
-						height: 36,
+						width: 32,
+						height: 32,
 						borderRadius: 2,
 						backgroundColor: `${config.color}20`,
 						color: config.color,
@@ -65,20 +63,36 @@ const ActivityItem = ({
 					{config.icon}
 				</Box>
 
-				<Box sx={{ flex: 1 }}>
-					<Typography sx={{ fontWeight: 600 }}>{title}</Typography>
+				<Box sx={{ flex: 1, minWidth: 0 }}>
+					<Typography variant="body2" fontWeight={600} noWrap title={title}>
+						{title}
+					</Typography>
 
-					<Typography variant="body2" color="text.secondary">
+					<Typography
+						variant="caption"
+						color="text.secondary"
+						noWrap
+						display="block"
+						title={device}
+					>
 						{device}
 					</Typography>
-
-					<Typography variant="caption" color="text.secondary">
-						{timestamp}
-					</Typography>
 				</Box>
+
+				<Typography
+					variant="caption"
+					color="text.secondary"
+					sx={{
+						flexShrink: 0,
+						whiteSpace: "nowrap",
+						fontSize: "0.7rem",
+					}}
+				>
+					{timestamp}
+				</Typography>
 			</Stack>
 
-			{!last && <Divider />}
+			{!last && <Divider sx={{ ml: 5.5, opacity: 0.6 }} />}
 		</>
 	);
 };

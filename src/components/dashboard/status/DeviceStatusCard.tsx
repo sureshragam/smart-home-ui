@@ -1,10 +1,12 @@
-import { Chip, Divider, Paper, Stack, Typography } from "@mui/material";
+import { Box, Chip, Paper, Stack, Typography } from "@mui/material";
 import WifiRoundedIcon from "@mui/icons-material/WifiRounded";
 import LanRoundedIcon from "@mui/icons-material/LanRounded";
 import AccessTimeRoundedIcon from "@mui/icons-material/AccessTimeRounded";
+import { useNavigate } from "react-router-dom";
 
 interface DeviceStatusCardProps {
 	id: number;
+	deviceCode: string;
 	name: string;
 	status: "Online" | "Offline";
 	wifiStrength: number;
@@ -13,6 +15,7 @@ interface DeviceStatusCardProps {
 }
 
 const DeviceStatusCard = ({
+	deviceCode,
 	name,
 	status,
 	wifiStrength,
@@ -20,21 +23,26 @@ const DeviceStatusCard = ({
 	lastSeen,
 }: DeviceStatusCardProps) => {
 	const isOnline = status === "Online";
+	const navigate = useNavigate();
+
+	const handleOpenDevice = () => {
+		navigate(`/devices/${encodeURIComponent(deviceCode)}`);
+	};
 
 	const details = [
 		{
 			label: "Wi-Fi",
-			value: wifiStrength,
+			value: wifiStrength == null ? "--" : `${wifiStrength} dBm`,
 			icon: <WifiRoundedIcon fontSize="small" />,
 		},
 		{
 			label: "IP Address",
-			value: ipAddress,
+			value: ipAddress || "--",
 			icon: <LanRoundedIcon fontSize="small" />,
 		},
 		{
 			label: "Last Seen",
-			value: lastSeen,
+			value: lastSeen || "--",
 			icon: <AccessTimeRoundedIcon fontSize="small" />,
 		},
 	];
@@ -42,61 +50,87 @@ const DeviceStatusCard = ({
 	return (
 		<Paper
 			elevation={0}
+			onClick={handleOpenDevice}
+			role="button"
+			tabIndex={0}
+			onKeyDown={(event) => {
+				if (event.key === "Enter" || event.key === " ") {
+					event.preventDefault();
+					handleOpenDevice();
+				}
+			}}
 			sx={{
+				height: "100%",
 				border: "1px solid",
 				borderColor: "divider",
-				borderRadius: 4,
-				overflow: "hidden",
-				transition: "0.25s",
+				borderRadius: 3,
+				p: 2,
+				cursor: "pointer",
+				transition: "all 0.2s ease",
 				"&:hover": {
-					boxShadow: 4,
+					borderColor: "primary.main",
 					transform: "translateY(-2px)",
+					boxShadow: 2,
+				},
+				"&:focus-visible": {
+					outline: "2px solid",
+					outlineColor: "primary.main",
 				},
 			}}
 		>
 			<Stack
 				direction="row"
-				justifyContent="space-between"
 				alignItems="center"
-				sx={{ p: 3 }}
+				justifyContent="space-between"
+				spacing={1}
+				sx={{ mb: 1.5, minWidth: 0 }}
 			>
-				<Stack spacing={0.5}>
-					<Typography variant="h6" fontWeight={700}>
-						{name}
-					</Typography>
-				</Stack>
+				<Typography variant="subtitle1" fontWeight={700} noWrap>
+					{name}
+				</Typography>
 
 				<Chip
 					label={status}
 					color={isOnline ? "success" : "error"}
 					size="small"
+					sx={{ height: 22, fontSize: "0.7rem", flexShrink: 0 }}
 				/>
 			</Stack>
 
-			<Divider />
-
-			<Stack spacing={2} sx={{ p: 3 }}>
+			<Stack spacing={1}>
 				{details.map((item) => (
 					<Stack
 						key={item.label}
 						direction="row"
 						alignItems="center"
-						justifyContent="space-between"
+						spacing={1}
+						sx={{ minWidth: 0 }}
 					>
-						<Stack
-							direction="row"
-							spacing={1.5}
-							alignItems="center"
-							sx={{ minWidth: 150 }}
+						<Box
+							sx={{ display: "flex", color: "text.secondary", flexShrink: 0 }}
 						>
 							{item.icon}
+						</Box>
 
-							<Typography variant="body2" color="text.secondary">
-								{item.label}
-							</Typography>
-						</Stack>
+						<Typography
+							variant="caption"
+							color="text.secondary"
+							sx={{ width: 65, flexShrink: 0 }}
+						>
+							{item.label}
+						</Typography>
 
-						<Typography variant="body2" fontWeight={600} textAlign="right">
+						<Typography
+							variant="caption"
+							fontWeight={600}
+							textAlign="right"
+							title={String(item.value)}
+							sx={{
+								ml: "auto",
+								minWidth: 0,
+								overflowWrap: "anywhere",
+							}}
+						>
 							{item.value}
 						</Typography>
 					</Stack>

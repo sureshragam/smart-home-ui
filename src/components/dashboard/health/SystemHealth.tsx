@@ -19,8 +19,11 @@ const SystemHealth = ({ metrics }: SystemHealthProps) => {
 			</Typography>
 
 			<Grid container spacing={3}>
-				{healthMetrics.map((metric) => (
-					<Grid key={metric.id} size={{ xs: 12, sm: 6, md: 4 }}>
+				{healthMetrics.map((metric, index) => (
+					<Grid
+						key={metric.id ?? `health-${index}`}
+						size={{ xs: 12, sm: 6, md: 4 }}
+					>
 						<HealthMetric {...metric} />
 					</Grid>
 				))}

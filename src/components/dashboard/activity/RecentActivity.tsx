@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Box, Card, CardContent, Typography } from "@mui/material";
 
 import type { ActivityResponse } from "../../../types/api/activity";
 import { mapActivitiesToItems } from "../../../mappers/activityMapper";
@@ -19,21 +19,45 @@ const RecentActivity = ({ activities }: RecentActivityProps) => {
 				borderRadius: 4,
 				border: "1px solid",
 				borderColor: "divider",
-				height: "100%",
+				height: "fit-content",
+				alignSelf: "start",
 			}}
 		>
-			<CardContent>
-				<Typography variant="h6" fontWeight={600} mb={2}>
-					Recent Activity
-				</Typography>
+			<CardContent sx={{ p: 2.5, "&:last-child": { pb: 2.5 } }}>
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						justifyContent: "space-between",
+						mb: 1.5,
+					}}
+				>
+					<Typography variant="h6" fontWeight={600}>
+						Recent Activity
+					</Typography>
 
-				{activityItems.map((activity, index) => (
-					<ActivityItem
-						key={activity.id}
-						{...activity}
-						last={index === activityItems.length - 1}
-					/>
-				))}
+					<Typography variant="caption" color="text.secondary">
+						Latest 3
+					</Typography>
+				</Box>
+
+				{activityItems.length > 0 ? (
+					activityItems.map((activity, index) => (
+						<ActivityItem
+							key={activity.id}
+							{...activity}
+							last={index === activityItems.length - 1}
+						/>
+					))
+				) : (
+					<Typography
+						variant="body2"
+						color="text.secondary"
+						sx={{ py: 3, textAlign: "center" }}
+					>
+						No recent activities
+					</Typography>
+				)}
 			</CardContent>
 		</Card>
 	);

@@ -16,6 +16,7 @@ import SettingsPage from "../pages/Settings";
 import ProtectedRoute from "../routes/ProtectedRoute";
 import PublicRoute from "../routes/PublicRoute";
 import DisplayPage from "../pages/Display";
+import MonitoringPage from "../pages/Monitoring";
 
 const router = createHashRouter([
 	// Public Routes
@@ -70,6 +71,10 @@ const router = createHashRouter([
 					{
 						path: "analytics",
 						element: <AnalyticsPage />,
+					},
+					{
+						path: "monitoring",
+						element: <MonitoringPage />,
 					},
 					{
 						path: "automations",

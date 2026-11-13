@@ -4,4 +4,8 @@ export const QUERY_KEYS = {
 	activities: ["activities"] as const,
 	health: ["health"] as const,
 	environment: ["environment"] as const,
+	monitoring: ["monitoring"] as const,
+	monitoringServerHistory: ["monitoring", "server-history"] as const,
+	monitoringNetworkHistory: ["monitoring", "network-history"] as const,
+	monitoringLatencyHistory: ["monitoring", "latency-history"] as const,
 };
